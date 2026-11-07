@@ -31,7 +31,6 @@ export function Inlay({ photo, sizes, ratio, small, paper, priority, reveal = tr
       placeholder="blur"
       blurDataURL={img.blurDataURL}
       priority={priority}
-      quality={priority ? 60 : undefined}
       className={imageClassName}
       style={ratio ? { aspectRatio: ratio } : undefined}
     />

@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-photos.mjs",
     "dev": "next dev -p 3100",
+    "prebuild": "node scripts/build-photos.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "photos": "node scripts/photo-manifest.mjs",
+    "photos": "node scripts/build-photos.mjs",
     "cv:pdf": "node scripts/cv-pdf.mjs",
     "cv:docx": "node scripts/cv-docx.mjs"
   },

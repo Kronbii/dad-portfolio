@@ -13,7 +13,7 @@ npm run dev        # http://localhost:3100
 
 ## Content
 
-All copy lives in `src/content/` (`site.ts`, `projects.ts`, `cv.ts`). Photos are in `public/images/`; after changing them, run `npm run photos`.
+All copy lives in `src/content/` (`site.ts`, `projects.ts`, `cv.ts`). Source photos are in `public/images/`. Before every `dev` and `build`, `scripts/build-photos.mjs` prepares each photo at every display size as WebP, so the site serves ready-made files and never resizes on request.
 
 ## CV
 
