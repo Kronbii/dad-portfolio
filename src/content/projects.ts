@@ -110,7 +110,7 @@ export const projects: Project[] = [
     ],
     onSite: [
       p('him/kneeling-onyx', 'Mahmoud Kronbi kneeling on a newly laid onyx floor'),
-      p('him/kneeling-corridor', 'Mahmoud Kronbi checking an inlaid corridor'),
+      p('him/with-craftsman', 'Mahmoud Kronbi with one of his craftsmen beside a marble panel'),
       p('him/marble-room', 'Mahmoud Kronbi in a finished marble room'),
       p('him/white-room', 'Mahmoud Kronbi in a finished white marble room'),
     ],

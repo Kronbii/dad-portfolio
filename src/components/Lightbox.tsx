@@ -32,6 +32,8 @@ export function Lightbox() {
   const step = useCallback((delta: number) => setView((v) => (v ? { ...v, index: (v.index + delta + v.items.length) % v.items.length } : v)), [])
 
   const current = view?.items[view.index]
+  // The photos either side load in the background, so stepping through feels instant.
+  const neighbours = view && view.items.length > 1 ? [view.items[(view.index + 1) % view.items.length], view.items[(view.index - 1 + view.items.length) % view.items.length]] : []
   return (
     <dialog
       ref={dialog}
@@ -56,6 +58,9 @@ export function Lightbox() {
             </figcaption>
           </figure>
         )}
+        {neighbours.map((item) => (
+          <Image key={`pre-${item.src}`} src={item.src} alt="" width={item.width} height={item.height} sizes="100vw" loading="eager" className="hidden" aria-hidden />
+        ))}
       </div>
       <button type="button" onClick={close} className="absolute right-4 top-4 rounded-full p-2 hover:bg-paper/10" aria-label="Close">
         <X className="size-6" aria-hidden />

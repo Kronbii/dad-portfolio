@@ -16,6 +16,9 @@ next-env.d.ts
 .env.*
 !.env.example
 
+# Photo sizes generated at build time by scripts/build-photos.mjs
+public/img/
+
 # Deploy tooling
 .vercel/
 

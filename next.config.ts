@@ -4,10 +4,21 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  // Photos are resized ahead of time by scripts/build-photos.mjs and served as static files,
+  // so no visitor waits for on-demand resizing. These widths must match WIDTHS in that script.
   images: {
-    formats: ["image/avif", "image/webp"],
-    // 60 is used for above-the-fold photos, where load time matters most on slow mobile data.
-    qualities: [60, 75],
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
+    deviceSizes: [384, 640, 828, 1080, 1280, 1600, 2000],
+    imageSizes: [256],
+  },
+  async headers() {
+    return [
+      {
+        source: "/img/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],
+      },
+    ];
   },
   turbopack: {
     rules: {
