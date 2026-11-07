@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* Palette taken from his marble: crema field, nero ink, rosso inlay, honey onyx. */
+@theme {
+  --color-field: #EDE6DA;
+  --color-paper: #F6F2EA;
+  --color-ink: #211E1B;
+  --color-vein: #655D53;
+  --color-rosso: #8A2D22;
+  --color-onyx: #B0802C;
+  --color-hair: rgb(33 30 27 / 0.18);
+}
+
+@theme inline {
+  --font-display: var(--font-marcellus), "Times New Roman", serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-field);
+    color: var(--color-ink);
+    font: 400 17px/1.6 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (max-width: 760px) { body { font-size: 16px; } }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.005em; }
+  :focus-visible { outline: 2px solid var(--color-rosso); outline-offset: 3px; }
+  ::selection { background: var(--color-rosso); color: var(--color-paper); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@utility wrap {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* Type scale */
+@utility t-h1 { font-size: clamp(42px, 6.4vw, 84px); line-height: 1.04; }
+@utility t-h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; }
+@utility t-h3 { font-size: clamp(21px, 2vw, 24px); line-height: 1.2; }
+@utility t-lede { font-size: clamp(18px, 1.6vw, 20px); line-height: 1.6; }
+
+/* Section rhythm */
+@utility section-gap { padding-top: clamp(72px, 10vw, 136px); }
+
+/* ---------- Scooped corners: the site's one motif, from the inlaid panels in his floors ---------- */
+@utility scoop {
+  --a: radial-gradient(circle at 0 0, #0000 var(--s), #000 calc(var(--s) + 0.6px));
+  --b: radial-gradient(circle at 100% 0, #0000 var(--s), #000 calc(var(--s) + 0.6px));
+  --c: radial-gradient(circle at 0 100%, #0000 var(--s), #000 calc(var(--s) + 0.6px));
+  --d: radial-gradient(circle at 100% 100%, #0000 var(--s), #000 calc(var(--s) + 0.6px));
+  -webkit-mask: var(--a) 0 0 / 51% 51% no-repeat, var(--b) 100% 0 / 51% 51% no-repeat, var(--c) 0 100% / 51% 51% no-repeat, var(--d) 100% 100% / 51% 51% no-repeat;
+  mask: var(--a) 0 0 / 51% 51% no-repeat, var(--b) 100% 0 / 51% 51% no-repeat, var(--c) 0 100% / 51% 51% no-repeat, var(--d) 100% 100% / 51% 51% no-repeat;
+}
+
+/* An inlay is three nested scoops: a rosso line, a field-coloured gap, then the photo. */
+.inlay { --r: 22px; --s: var(--r); padding: 1.5px; background: var(--color-rosso); }
+.inlay > .inlay-gap { --s: calc(var(--r) - 0.6px); padding: 7px; background: var(--color-field); }
+.inlay .inlay-media { --s: calc(var(--r) - 3.5px); position: relative; overflow: hidden; }
+.inlay .inlay-media img { width: 100%; height: 100%; object-fit: cover; }
+.inlay-sm { --r: 14px; }
+
+/* Framed photos open out from just inside their frame as they scroll in. CSS only, so no script cost;
+   browsers without scroll-driven animations simply show the photo. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation: unveil linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+  }
+}
+@keyframes unveil {
+  from { clip-path: inset(7% 7% 7% 7%); transform: scale(1.06); }
+  to { clip-path: inset(0 0 0 0); transform: none; }
+}
+.inlay-paper > .inlay-gap { background: var(--color-paper); }
+
+/* ---------- Hero border, drawn once like setting out a floor ---------- */
+.hero-frame { position: absolute; inset: 0; border: 1.25px solid var(--color-ink); pointer-events: none; }
+.hero-frame-inner { position: absolute; inset: 9px; border: 1.25px solid var(--color-rosso); pointer-events: none; }
+.hero-corner { position: absolute; width: 11px; height: 11px; background: var(--color-rosso); transform: translate(-50%, -50%) rotate(45deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-frame, .hero-frame-inner { clip-path: inset(0 100% 100% 0); animation: frame-draw 1.5s cubic-bezier(0.6, 0, 0.2, 1) 0.2s forwards; }
+  .hero-frame-inner { animation-delay: 0.45s; }
+  .hero-corner { opacity: 0; animation: frame-appear 0.5s ease-out 1.8s forwards; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-rise-2 { animation-delay: 0.15s; }
+  .hero-rise-3 { animation-delay: 0.3s; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes frame-draw { to { clip-path: inset(0 0 0 0); } }
+@keyframes frame-appear { to { opacity: 1; } }
+
+/* A framed note or contact box: double rule, ink outside, rosso inside */
+.double-rule { border: 1.25px solid var(--color-ink); outline: 1.25px solid var(--color-rosso); outline-offset: -9px; }
+
+/* Facts table */
+.facts { display: grid; grid-template-columns: 8.5em 1fr; border-top: 1px solid var(--color-hair); }
+.facts dt, .facts dd { margin: 0; padding: 12px 0; border-bottom: 1px solid var(--color-hair); font-size: 15px; }
+.facts dt { color: var(--color-vein); }
+
+/* Lightbox: the viewer fades in, and each photo eases in as you step through */
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] { animation: frame-appear 0.2s ease-out; }
+  .lightbox-photo { animation: photo-in 0.3s cubic-bezier(0.2, 0.7, 0.2, 1); }
+}
+@keyframes photo-in { from { opacity: 0; transform: scale(0.98); } }
+
+/* Placeholder for unconfirmed facts (development only) */
+.verify { color: var(--color-rosso); font-style: italic; }
+
+/* Numbered steps, for content that really is a sequence */
+.steps { counter-reset: step; }
+.steps > li { counter-increment: step; }
+.step-title::before { content: counter(step); color: var(--color-rosso); font-size: 0.8em; margin-right: 12px; }
+
+/* Print: the CV page prints on white A4 */
+@media print {
+  @page { size: A4; margin: 14mm 15mm; }
+  body { background: #fff; }
+  .no-print { display: none !important; }
+}
