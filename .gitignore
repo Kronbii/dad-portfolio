@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Deploy tooling
+.vercel/
+
+# OS and editor
+.DS_Store
+.vscode/
+.idea/
+*.log
