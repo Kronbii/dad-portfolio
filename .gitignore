@@ -1,11 +1,15 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.*
 
 # Build output
-dist/
-build/
 .next/
 out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
 
 # Environment
 .env
@@ -15,8 +19,15 @@ out/
 # Deploy tooling
 .vercel/
 
+# Raw media from his phone (large, private source material)
+media/
+
+# Design mockups, kept locally as reference
+mockups/
+
 # OS and editor
 .DS_Store
 .vscode/
 .idea/
 *.log
+*.pem
