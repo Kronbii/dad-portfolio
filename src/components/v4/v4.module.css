@@ -1,0 +1,320 @@
+/* v4: the hoarding. Galvanised zinc and sprayed stencil on one side of the seam, white marble and a serif on the other. */
+
+.v4 {
+  --zinc-hi: #bfc4c5;
+  --zinc: #a2a8aa;
+  --zinc-lo: #868c8e;
+  --zinc-deep: #5f6567;
+  --marble: #f3f3f0;
+  --ink: #181818;
+  --paint: #1b1b1b;
+  --safety: #ef6a1d;
+  --fin: #1e1d1b;
+  min-height: 100vh;
+  background: var(--marble);
+  color: var(--ink);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.v4 h1, .v4 h2, .v4 h3 { font-family: inherit; }
+.v4 ::selection { background: var(--safety); color: #fff; }
+.v4 :focus-visible { outline: 2px solid var(--safety); outline-offset: 3px; }
+.v4 a { color: inherit; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.page { overflow-x: clip; }
+
+/* ---------- materials ---------- */
+.zinc {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 60% at 20% 110%, rgb(120 82 40 / 0.18), transparent 60%),
+    linear-gradient(180deg, transparent 49.6%, rgb(0 0 0 / 0.18) 49.8%, rgb(255 255 255 / 0.25) 50.2%, transparent 50.4%),
+    repeating-linear-gradient(90deg, var(--zinc-hi) 0 4px, var(--zinc) 9px, var(--zinc-lo) 14px, var(--zinc) 19px, var(--zinc-hi) 24px);
+}
+.marble {
+  position: absolute;
+  inset: 0;
+  background-color: var(--marble);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cg fill='none' stroke='%23a7a49c' stroke-linecap='round'%3E%3Cpath d='M-20 120 C120 90 180 210 300 190 S520 60 640 140 830 120 830 120' stroke-width='1.2' opacity='.55'/%3E%3Cpath d='M-20 380 C90 330 210 470 360 420 S600 300 820 360' stroke-width='.8' opacity='.45'/%3E%3Cpath d='M180 -10 C230 120 160 220 260 330 S300 520 240 620' stroke-width='.7' opacity='.35'/%3E%3Cpath d='M520 -10 C560 140 500 260 600 380 S700 520 660 620' stroke-width='1' opacity='.3'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(80% 70% at 70% 30%, #fbfbf9, transparent 70%);
+  background-size: 900px auto, cover;
+}
+
+/* ---------- the seam ---------- */
+.seam { position: relative; overflow: hidden; user-select: none; }
+.seamRaw, .seamFinished { position: absolute; inset: 0; }
+.seamEdge { position: absolute; top: 0; bottom: 0; width: 0; pointer-events: none; z-index: 2; }
+.seamEdge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  width: 12px;
+  background: repeating-linear-gradient(-45deg, var(--safety) 0 9px, var(--paint) 9px 18px);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.25), 6px 0 16px rgb(0 0 0 / 0.25);
+}
+.seamGrip {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--marble);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.35), inset 0 0 0 2px var(--paint);
+  transform: translate(-50%, -50%);
+}
+.seamGrip { display: grid; place-items: center; color: var(--paint); }
+.seamGrip svg { width: 22px; height: 22px; stroke-width: 2.4; }
+.readout {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--paint);
+  color: #f3f3f0;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.readout span { color: var(--safety); font-weight: 800; }
+.seamRange {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.seamRange:focus-visible ~ .seamEdge .seamGrip { outline: 3px solid var(--safety); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; }
+.heroSeam { height: 88svh; min-height: 560px; }
+.heroRaw {
+  position: absolute;
+  left: clamp(16px, 4vw, 64px);
+  top: 50%;
+  width: min(44vw, 640px);
+  margin: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-stencil), sans-serif;
+  font-size: clamp(54px, 8.4vw, 150px);
+  font-weight: 800;
+  line-height: 0.84;
+  text-transform: uppercase;
+  color: var(--paint);
+  text-shadow: 0 0 1px rgb(0 0 0 / 0.5), 0 0 7px rgb(0 0 0 / 0.22), 2px 2px 0 rgb(0 0 0 / 0.06);
+  font-variation-settings: 'opsz' 72;
+}
+.sprayNote {
+  position: absolute;
+  left: clamp(16px, 4vw, 64px);
+  bottom: clamp(18px, 4vh, 40px);
+  margin: 0;
+  font-family: var(--font-stencil), sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--safety);
+}
+.heroFinished {
+  position: absolute;
+  left: 55%;
+  right: clamp(16px, 4vw, 64px);
+  top: 50%;
+  margin: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-gloock), serif;
+  font-size: clamp(50px, 6.8vw, 124px);
+  line-height: 0.98;
+  color: var(--fin);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.heroBy {
+  position: absolute;
+  right: clamp(16px, 4vw, 64px);
+  bottom: clamp(18px, 4vh, 40px);
+  margin: 0;
+  text-align: right;
+  font-weight: 700;
+  font-size: 16px;
+}
+.heroBy span { display: block; font-weight: 400; color: #4d4b46; }
+
+/* ---------- signboard ---------- */
+.signWrap { position: relative; display: grid; justify-items: center; padding: clamp(56px, 8vw, 110px) clamp(16px, 4vw, 64px) 0; background: linear-gradient(180deg, var(--marble) 0 70%, #d9d4c8 70%); }
+.signboard {
+  position: relative;
+  z-index: 1;
+  width: min(880px, 100%);
+  padding: clamp(22px, 3.4vw, 40px);
+  background: #fdfdfb;
+  border: 6px solid var(--paint);
+  box-shadow: 0 24px 50px rgb(0 0 0 / 0.18);
+}
+.signTitle {
+  margin: calc(-1 * clamp(22px, 3.4vw, 40px)) calc(-1 * clamp(22px, 3.4vw, 40px)) 22px;
+  padding: 14px clamp(22px, 3.4vw, 40px);
+  background: #12355b;
+  color: #fdfdfb;
+  font-family: var(--font-stencil), sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.signRows { margin: 0; }
+.signRows > div { display: grid; grid-template-columns: 13em 1fr; gap: 16px; padding: 10px 0; border-bottom: 2px solid var(--paint); }
+.signRows dt { font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.04em; padding-top: 2px; }
+.signRows dd { margin: 0; font-weight: 600; font-size: 18px; }
+.signActions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.posts { display: flex; justify-content: space-between; width: min(640px, 70%); height: 90px; }
+.posts span { width: 14px; height: 100%; background: linear-gradient(90deg, #3d3d3d, #222 60%, #111); }
+
+.btnPaint, .btnLine, .btnZinc {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 3px;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.2s;
+}
+.btnPaint { background: var(--safety); color: #fff !important; }
+.btnPaint:hover { background: #d95a10; transform: translateY(-2px); }
+.btnLine { border: 2px solid var(--paint); }
+.btnLine:hover { background: rgb(0 0 0 / 0.05); }
+.btnZinc { background: rgb(255 255 255 / 0.85); color: var(--ink) !important; }
+.btnZinc:hover { background: #fff; }
+.btnPaint svg, .btnLine svg, .btnZinc svg { width: 18px; height: 18px; }
+
+/* ---------- raw and finished pairs ---------- */
+.pairs { padding: clamp(70px, 10vw, 140px) clamp(16px, 4vw, 64px); background: #d9d4c8; }
+.sectionTitle { margin: 0; font-family: var(--font-gloock), serif; font-weight: 400; font-size: clamp(36px, 4.8vw, 72px); line-height: 1.02; letter-spacing: -0.01em; text-wrap: balance; }
+.stencilWord { font-family: var(--font-stencil), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+.lede { max-width: 58ch; margin: 16px 0 0; font-size: clamp(17px, 1.3vw, 19px); color: #3b3935; }
+
+.pair { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); align-items: end; margin-top: clamp(56px, 8vw, 110px); }
+.pairRight { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); }
+.pairRight .pairSeam { order: 2; }
+.pairRight .pairCaption { text-align: right; justify-items: end; }
+.pairLeft { margin-right: 8vw; }
+.pairRight { margin-left: 8vw; }
+.pairSeam { aspect-ratio: 3 / 4; box-shadow: 0 30px 60px rgb(0 0 0 / 0.22); }
+.rawFrame, .finFrame { position: absolute; inset: 0; }
+.fill { display: block; width: 100%; height: 100%; object-fit: cover; }
+.rawImg { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.85) contrast(1.1) brightness(0.95); }
+.rawTag, .finTag { position: absolute; bottom: 12px; padding: 4px 10px; font-size: 14px; }
+.rawTag { left: 12px; background: var(--paint); color: #f3f3f0; font-family: var(--font-stencil), sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.finTag { right: 12px; background: var(--marble); color: var(--fin); font-family: var(--font-gloock), serif; font-size: 17px; }
+.pairCaption { display: grid; gap: 8px; padding-bottom: 8px; }
+.pairTitle { margin: 0; font-family: var(--font-gloock), serif; font-weight: 400; font-size: clamp(32px, 3.6vw, 56px); line-height: 1; }
+.pairCaption p { margin: 0; color: #3b3935; }
+.capRaw { font-family: var(--font-stencil), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
+.capFin { font-family: var(--font-gloock), serif; }
+.pairLink { font-weight: 800; color: var(--safety) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- posters pasted on the hoarding ---------- */
+.posters { position: relative; padding: clamp(70px, 10vw, 140px) clamp(16px, 4vw, 64px); background:repeating-linear-gradient(90deg, var(--zinc-hi) 0 4px, var(--zinc) 9px, var(--zinc-lo) 14px, var(--zinc) 19px, var(--zinc-hi) 24px); }
+.postersHead { position: relative; max-width: 760px; }
+.posterTitle { margin: 0; font-family: var(--font-stencil), sans-serif; font-weight: 800; font-size: clamp(48px, 7vw, 120px); line-height: 0.86; text-transform: uppercase; color: var(--paint); text-shadow: 0 0 1px rgb(0 0 0 / 0.5), 0 0 6px rgb(0 0 0 / 0.2); }
+.postersLede { max-width: 54ch; margin: 18px 0 0; padding: 10px 14px; background: rgb(253 253 251 / 0.92); font-size: 17px; }
+.posterWall { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 44px); margin: 48px 0 0; padding: 0; list-style: none; }
+.poster {
+  position: relative;
+  padding: 12px 12px 16px;
+  background: #fbfaf6;
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.08), 0 14px 26px rgb(0 0 0 / 0.25);
+  transform: rotate(var(--tilt));
+}
+.poster::before, .poster::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 64px;
+  height: 22px;
+  background: rgb(230 214 178 / 0.85);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+}
+.poster::before { left: 14px; transform: rotate(-6deg); }
+.poster::after { right: 14px; transform: rotate(5deg); }
+.posterImg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: contrast(1.04); }
+.posterStep { margin: 12px 0 0; font-family: var(--font-stencil), sans-serif; font-weight: 800; font-size: 26px; line-height: 1; text-transform: uppercase; }
+.posterStep span { color: var(--safety); }
+.posterText { margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: #3b3935; }
+
+/* ---------- the man on the board ---------- */
+.man { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 80px); align-items: center; padding: clamp(70px, 10vw, 140px) clamp(16px, 4vw, 64px); }
+.manPhoto { aspect-ratio: 3 / 4; overflow: hidden; box-shadow: 0 30px 60px rgb(0 0 0 / 0.2); }
+.manStrip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.manStrip li { aspect-ratio: 3 / 4; overflow: hidden; }
+.manAbout { max-width: 58ch; margin: 24px 0 0; padding-top: 18px; border-top: 2px solid var(--ink); }
+
+/* ---------- structure, behind other hoardings ---------- */
+.structure { padding: clamp(60px, 8vw, 110px) clamp(16px, 4vw, 64px); background: var(--zinc-deep); color: #eef0ef; }
+.structureTitle { margin: 0; font-family: var(--font-stencil), sans-serif; font-weight: 800; font-size: clamp(40px, 5vw, 80px); line-height: 0.9; text-transform: uppercase; }
+.structureLede { max-width: 60ch; margin: 14px 0 0; color: #dfe2e1; }
+.structureRow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 32px 0 0; padding: 0; list-style: none; }
+.structureImg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.structureRow span { display: block; margin-top: 8px; font-size: 14px; color: #dfe2e1; }
+.structureLink { display: inline-block; margin-top: 24px; font-weight: 800; color: #ffd2b5 !important; text-underline-offset: 3px; }
+
+/* ---------- for enquiries ---------- */
+.enquiries {
+  padding: clamp(70px, 10vw, 140px) clamp(16px, 4vw, 64px) clamp(80px, 10vw, 140px);
+  background: repeating-linear-gradient(90deg, var(--zinc-hi) 0 4px, var(--zinc) 9px, var(--zinc-lo) 14px, var(--zinc) 19px, var(--zinc-hi) 24px);
+}
+.enquiriesLabel { margin: 0; font-family: var(--font-stencil), sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 56px); text-transform: uppercase; color: var(--safety); text-shadow: 0 0 6px rgb(0 0 0 / 0.15); }
+.bigNumber {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-stencil), sans-serif;
+  font-weight: 800;
+  font-size: clamp(64px, 13.5vw, 240px);
+  line-height: 0.86;
+  color: var(--paint) !important;
+  text-decoration: none;
+  text-shadow: 0 0 1px rgb(0 0 0 / 0.5), 0 0 8px rgb(0 0 0 / 0.22);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.bigNumber:hover { color: #000 !important; }
+.enquiryActions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* ---------- phones ---------- */
+@media (max-width: 900px) {
+  .heroSeam { height: 86svh; }
+  .heroRaw { width: calc(50vw - 34px); font-size: clamp(34px, 9.4vw, 72px); top: 40%; }
+  .heroFinished { left: 54%; font-size: clamp(34px, 8.6vw, 64px); top: 60%; }
+  .heroBy { font-size: 14px; }
+  .signRows > div { grid-template-columns: 1fr; gap: 2px; }
+  .pair, .pairRight { grid-template-columns: 1fr; margin-inline: 0; }
+  .pairRight .pairSeam { order: 0; }
+  .pairRight .pairCaption { text-align: left; justify-items: start; }
+  .posterWall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .man { grid-template-columns: 1fr; }
+  .structureRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .posterStep { font-size: 20px; }
+  .posterText { font-size: 13px; }
+}
