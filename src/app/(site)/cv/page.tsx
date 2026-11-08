@@ -32,7 +32,13 @@ export default function CvPage() {
             {cv.contact.map((c) => (
               <li key={c.label}>
                 <span className="text-vein">{c.label}: </span>
-                {c.value}
+                {c.href ? (
+                  <a href={c.href} className="underline decoration-rosso/40 underline-offset-2 hover:text-rosso">
+                    {c.value}
+                  </a>
+                ) : (
+                  c.value
+                )}
               </li>
             ))}
           </ul>
