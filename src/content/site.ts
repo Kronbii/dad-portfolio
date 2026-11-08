@@ -1,4 +1,4 @@
-import type { Caption, Photo, Place, Step, Tile } from './types'
+import type { Caption, BeforeAfter, Photo, Place, Step, Tile } from './types'
 
 const p = (src: string, alt: string): Photo => ({ src, alt })
 
@@ -33,7 +33,7 @@ export const hero = {
   scenes: [
     { photo: p('marble-interiors/dome-ceiling', 'A finished dome ceiling with radiating mouldings and recessed lights above a double-height hall'), caption: 'Dome ceiling, private residence' },
     { photo: p('marble-interiors/onyx-bath', 'Honey onyx and white marble wall panels with ornamental black borders'), caption: 'Onyx and marble bathroom' },
-    { photo: p('lagoon-residence/lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'), caption: 'Pool and terraces above the lagoon' },
+    { photo: p('lagoon-residence/terraces-from-above', 'Curving terraces, a thatched gazebo and a mosaic pool above the Lagos lagoon'), caption: 'Terraces and pool above the lagoon' },
     { photo: p('marble-interiors/marble-staircase', 'Marble staircase with an inlaid floor border at its foot'), caption: 'Marble staircase and inlaid floor' },
     { photo: p('marble-interiors/stained-glass-lit', 'Backlit stained-glass ceiling glowing above a hall'), caption: 'Stained-glass ceiling' },
   ] satisfies Caption[],
@@ -62,7 +62,7 @@ export const finishes = {
     { name: 'Floors', photo: p('marble-interiors/parquet', 'Parquet in a geometric pattern'), second: p('marble-interiors/floor-diamond-grid', 'Marble floor with a diamond grid of inlays') },
     { name: 'Pools', photo: p('finishes/mosaic-pool', 'Pool with blue mosaic steps'), second: p('lagoon-residence/pool-paving', 'Pool with crazy-paving surround and gazebos') },
     { name: 'Water features', photo: p('finishes/water-wall', 'Stone water wall lit at night'), second: p('lagoon-residence/entrance-built', 'Entrance with a fountain bed') },
-    { name: 'Facades and balustrades', photo: p('lagoon-residence/stair-balustrade', 'Exterior stair with white balustrades'), second: p('lagoon-residence/arches-facade', 'White arched facade') },
+    { name: 'Facades and landscape', photo: p('lagoon-residence/stair-balustrade', 'Exterior stair with white balustrades'), second: p('lagoon-residence/drive-gardens', 'Planted beds and stone paving along a drive') },
     { name: 'Interior design', photo: p('finishes/kitchen-drawing', '3D design drawing of a kitchen'), second: p('lagoon-residence/entrance-render', 'Render of a villa entrance') },
   ] satisfies Tile[],
 }
@@ -91,14 +91,23 @@ export const madeOnSitePosters = {
   link: { href: '/work/lagoon-front-residence', label: 'See the whole residence' },
 }
 
-/** The render was modelled afterwards to match the finished photo (.media-work/render), so it is labelled as an illustration. */
+/** The lagoon-front residence's entrance: the architect's render against the built gate, and the site before and after. */
 export const renderToReality = {
   title: 'From render to reality',
   mark: 'reality',
-  intro: 'A render shows the plan. The finished terrace shows the work: real stone underfoot, the mosaic pool, the balustrades I cast on site, and the lagoon behind. Drag to compare.',
-  before: p('lagoon-residence/terraces-3d-render', '3D render of the terraces, gazebo and pool'),
-  after: p('lagoon-residence/terraces-from-above', 'The finished terraces, gazebo and pool above the lagoon, with the city across the water'),
-  labels: ['Render (illustration)', 'Finished'] as const,
+  intro: "The architect's render of the lagoon-front residence's entrance gate against the gate as my team built it, and the same entrance before and after the work. Drag to compare.",
+  pairs: [
+    {
+      before: p('lagoon-residence/gate-render', "The architect's render of the entrance gate"),
+      after: p('lagoon-residence/gate-built', 'The finished entrance gate, with vertical bars and patterned panels'),
+      labels: ['Render', 'Finished'],
+    },
+    {
+      before: p('lagoon-residence/gate-before', 'The old iron gate before the work'),
+      after: p('lagoon-residence/gate-after', 'The new entrance: a tiled roof over the gate and the pedestrian door'),
+      labels: ['Before', 'After'],
+    },
+  ] satisfies BeforeAfter[],
 }
 
 export const details = {

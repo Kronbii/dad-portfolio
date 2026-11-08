@@ -16,7 +16,7 @@ export default function HomePage() {
       <TradeTiles />
       <ProjectBands projects={projects.filter((project) => project.featured)} />
       <Posters />
-      <RenderToReality content={renderToReality} ratio="4 / 5" position="50% 18%" peek className="max-w-[520px]" />
+      <RenderToReality content={renderToReality} />
       <DetailTiles />
       <OnSite />
       <BehindHoardings />

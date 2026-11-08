@@ -18,7 +18,7 @@ This repo is the portfolio site of Mahmoud Kronbi, a finishing contractor in Lag
 | `cv/` | The CV as an editable Word file (`npm run cv:docx`), not linked from the site |
 | `scripts/` | Photo manifest and CV generators |
 
-`media/`, `mockups/` and `.media-work/` are local only and never committed. `.media-work/` holds the photo originals, the selection list, the export script, and the Blender scene behind the render-to-reality render (`.media-work/render/`). Read `.media-work/CONFIDENTIAL.md` before adding or changing any photo or copy.
+`media/`, `mockups/` and `.media-work/` are local only and never committed. `.media-work/` holds the photo originals, the selection list, and the export script. Read `.media-work/CONFIDENTIAL.md` before adding or changing any photo or copy.
 
 ## Publication rules
 

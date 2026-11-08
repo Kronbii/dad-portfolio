@@ -15,6 +15,9 @@ export type Photo = { src: string; alt: string }
 
 export type Caption = { photo: Photo; caption: string }
 
+/** Two photos taken from the same spot, compared under a slider: before on the left, after on the right. */
+export type BeforeAfter = { before: Photo; after: Photo; labels: [string, string] }
+
 /** A trade on the home page: its photo, and a second one that crossfades in on hover. */
 export type Tile = { name: string; photo: Photo; second: Photo }
 

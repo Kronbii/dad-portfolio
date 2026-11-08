@@ -12,7 +12,7 @@ Scope: the live home page. Chosen from the design versions on 2026-11-08 (it was
 ## Direction contract
 THESIS: v1 with life: the hero frame becomes a showreel. Five finished rooms take turns in the inlay on a timer (the scroll-driven version was dropped; the user was unsure about it). Refuses the paragraph-heavy hero.
 OWN-WORLD: v1 unchanged; the rosso corner diamonds become the reel's progress marks.
-STORY: Name, one line, WhatsApp; rooms in the frame; Across Nigeria; trades as photo tiles; projects as framed bands; posters; render to reality (a Blender render modelled to match the photo); details; on site; behind other hoardings; about (Hello, Marhaba, Báwo); contact as his visiting card lying on his CV, with Save my number. One phrase in the hero and in three headings is highlighted in the text-selection rosso.
+STORY: Name, one line, WhatsApp; rooms in the frame; Across Nigeria; trades as photo tiles; projects as framed bands; posters; render to reality (the architect's render against the built entrance gate, and the entrance before and after); details; on site; behind other hoardings; about (Hello, Marhaba, Báwo); contact as his visiting card lying on his CV, with Save my number. One phrase in the hero and in three headings is highlighted in the text-selection rosso.
 FIRST VIEWPORT: v1's double-rule frame: headline left with one button; right, a tall scooped frame whose photo changes every few seconds through five finished rooms, a caption under it, five diamonds as progress.
 FORM: Structure 5 of my ordered list (showreel); seed key d2b69600.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
