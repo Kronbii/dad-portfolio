@@ -1,51 +1,77 @@
-import type { Caption, Photo, Step, Trade } from './types'
+import type { Caption, Photo, Place, Step, Tile } from './types'
 
 const p = (src: string, alt: string): Photo => ({ src, alt })
 
 const whatsappText = "Hello Mr Kronbi, I'd like to discuss finishing work for my project."
+
+/** A WhatsApp chat with him, opened with the visitor's message already typed. */
+const whatsappLink = (text: string) => `https://wa.me/2348134004430?text=${encodeURIComponent(text)}`
 
 export const site = {
   name: 'Mahmoud Kronbi',
   role: 'Finishing contractor, Lagos',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mahmoud-kronbi.vercel.app',
   description:
-    'Mahmoud Kronbi finishes luxury homes and large buildings across Nigeria: marble, bathrooms, ceilings, floors, pools and facades.',
+    'I finish luxury homes and large buildings across Nigeria: marble, bathrooms, ceilings, floors, pools and facades.',
   company: { name: 'RAZANCO Nigeria Limited', rc: '168931' },
   contact: {
-    whatsapp: `https://wa.me/2348134004430?text=${encodeURIComponent(whatsappText)}`,
+    whatsapp: whatsappLink(whatsappText),
     phone: { href: 'tel:+2348134004430', label: '+234 813 400 4430' },
     email: 'Mahmoud.kronbi@gmail.com',
     city: 'Lagos, Nigeria',
   },
   cv: { pdf: '/cv/mahmoud-kronbi-cv.pdf' },
+  /** His contact card, so a visitor can save the number in one tap. */
+  vcard: '/mahmoud-kronbi.vcf',
 }
 
 export const hero = {
-  headline: 'Anyone can put a building up. He makes it beautiful.',
-  lede:
-    'For more than twenty years Mahmoud Kronbi has finished villas, halls and large buildings across Nigeria: marble, bathrooms, ceilings, floors, pools and facades. He runs the work from the first tile to the final polish, and he is on site every day until it is right.',
-  photo: p('marble-interiors/dome-ceiling', 'A finished dome ceiling with radiating mouldings and recessed lights above a double-height hall'),
+  headline: 'Anyone can put a building up. I make it beautiful.',
+  /** Highlighted in the text-selection rosso. Non-breaking spaces keep short words with their neighbours. */
+  headlineMark: 'I make it beautiful.',
+  /** The rooms that take turns in the hero's frame. */
+  scenes: [
+    { photo: p('marble-interiors/dome-ceiling', 'A finished dome ceiling with radiating mouldings and recessed lights above a double-height hall'), caption: 'Dome ceiling, private residence' },
+    { photo: p('marble-interiors/onyx-bath', 'Honey onyx and white marble wall panels with ornamental black borders'), caption: 'Onyx and marble bathroom' },
+    { photo: p('lagoon-residence/lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'), caption: 'Pool and terraces above the lagoon' },
+    { photo: p('marble-interiors/marble-staircase', 'Marble staircase with an inlaid floor border at its foot'), caption: 'Marble staircase and inlaid floor' },
+    { photo: p('marble-interiors/stained-glass-lit', 'Backlit stained-glass ceiling glowing above a hall'), caption: 'Stained-glass ceiling' },
+  ] satisfies Caption[],
 }
 
+/** x and y are in the map's own units (see components/sections/nigeria.ts). */
+export const acrossNigeria = {
+  title: 'Across Nigeria',
+  places: [
+    { name: 'Lagos', work: 'Lagoon-front residence, marble interiors, villa structures', x: 36, y: 310, photo: p('lagoon-residence/terrace-lagoon', 'Curving balustrade terrace beside the lagoon') },
+    { name: 'Ibadan', work: 'Event hall and a guest house', x: 56, y: 273, photo: p('event-hall/hall-stage', 'Event hall with a polished checkered floor and stage') },
+    { name: 'Ogbomosho', work: 'Waffle slab', x: 70, y: 243, labelAbove: true, photo: p('built-to-scale/waffle-slab', 'Waffle slab formwork') },
+    { name: 'Lokoja', work: 'Three-storey building', x: 170, y: 256, photo: p('built-to-scale/lokoja-building', 'Three-storey building in Lokoja') },
+    { name: 'Abuja', work: "Round restaurant, house finishing and a women's spa", x: 200, y: 206, photo: p('built-to-scale/restaurant-walls', 'Walls of the round restaurant going up') },
+    { name: 'Kano', work: 'Box culverts at Makarfi', x: 241, y: 88, photo: p('built-to-scale/culverts-formwork', 'Timber formwork for box culverts') },
+  ] satisfies Place[],
+}
+
+/** What he finishes, as photos with names. The second photo crossfades in on hover. */
 export const finishes = {
-  title: 'What he finishes',
-  intro: 'Structure makes a building stand. Finishing is what people see, touch and remember. He takes on all of it, inside and out.',
-  trades: [
-    { title: 'Marble and stone', text: 'Book-matched walls, inlaid borders and medallions, cut and set by hand.', photo: p('marble-interiors/onyx-bath', 'Honey onyx and white marble wall panels with ornamental black borders') },
-    { title: 'Bathrooms and spas', text: 'Wet rooms, showers and spa suites in marble, onyx and porcelain.', photo: p('marble-interiors/master-bath', 'Master bathroom with stone-clad walls, lit niches and a sunken bath') },
-    { title: 'Ceilings', text: 'Domes, suspended ceilings, cove lighting and stained glass.', photo: p('marble-interiors/stained-glass', 'Backlit stained-glass ceiling panels') },
-    { title: 'Floors', text: 'Marble inlays and parquet, laid flat and true across every room.', photo: p('marble-interiors/parquet', 'Parquet floor laid in a geometric pattern in a bright room') },
-    { title: 'Pools and water', text: 'Pools, mosaic work and water walls, indoors and out.', photo: p('finishes/mosaic-pool', 'Swimming pool with blue mosaic steps and a diamond pattern on the floor') },
-    { title: 'Facades and landscape', text: 'Balustrades, stone cladding, paving and gardens that finish the outside.', photo: p('lagoon-residence/stair-balustrade', 'Exterior staircase with white balustrades and stone treads') },
-    { title: 'Interior design', text: 'He draws the design too, from kitchen layouts to whole rooms.', photo: p('finishes/kitchen-drawing', '3D design drawing of a kitchen with curved cabinets and a stone floor') },
-  ] satisfies Trade[],
-  note: "When a material can't be found in Nigeria, he makes it himself: balustrades cast on site, or lighting poles for a garage when none were for sale.",
+  title: 'What I finish',
+  tiles: [
+    { name: 'Marble and stone', photo: p('marble-interiors/onyx-bath', 'Onyx and white marble panels with ornamental borders'), second: p('marble-interiors/medallion-square', 'Square marble medallion in a red and grey border') },
+    { name: 'Bathrooms and spas', photo: p('marble-interiors/master-bath', 'Master bathroom with lit niches'), second: p('marble-interiors/shower-carrara', 'White veined marble shower with a bench') },
+    { name: 'Ceilings', photo: p('marble-interiors/stained-glass', 'Backlit stained-glass ceiling'), second: p('marble-interiors/dome-ceiling', 'Dome ceiling with radiating mouldings') },
+    { name: 'Floors', photo: p('marble-interiors/parquet', 'Parquet in a geometric pattern'), second: p('marble-interiors/floor-diamond-grid', 'Marble floor with a diamond grid of inlays') },
+    { name: 'Pools', photo: p('finishes/mosaic-pool', 'Pool with blue mosaic steps'), second: p('lagoon-residence/pool-paving', 'Pool with crazy-paving surround and gazebos') },
+    { name: 'Water features', photo: p('finishes/water-wall', 'Stone water wall lit at night'), second: p('lagoon-residence/entrance-built', 'Entrance with a fountain bed') },
+    { name: 'Facades and balustrades', photo: p('lagoon-residence/stair-balustrade', 'Exterior stair with white balustrades'), second: p('lagoon-residence/arches-facade', 'White arched facade') },
+    { name: 'Interior design', photo: p('finishes/kitchen-drawing', '3D design drawing of a kitchen'), second: p('lagoon-residence/entrance-render', 'Render of a villa entrance') },
+  ] satisfies Tile[],
 }
 
+/** The balustrade story: the lagoon-front project page shows it as numbered steps. */
 export const madeOnSite = {
   title: 'Made on site, not imported',
   intro:
-    'Instead of importing balustrades for the lagoon-front residence, he made them. Every baluster and every curved coping was produced on site, from a profile drawn for the house.',
+    'Instead of importing balustrades for the lagoon-front residence, I made them. Every baluster and every curved coping was produced on site, from a profile drawn for the house.',
   steps: [
     { title: 'The profile', text: 'Drawn full size and cut from board, with each height marked and corrected.', photo: p('lagoon-residence/baluster-profile', 'Baluster profile cut from board, with pencil dimensions and a red correction at the top') },
     { title: 'The master', text: 'A wooden master shaped to the profile and trimmed until the proportions were right.', photo: p('lagoon-residence/baluster-master', 'Wooden master baluster standing on site, marked in red where it will be trimmed') },
@@ -56,11 +82,23 @@ export const madeOnSite = {
   ] satisfies Step[],
 }
 
+/** The home page tells the same story on posters, with the reason behind it. */
+export const madeOnSitePosters = {
+  title: 'Made on site, not imported.',
+  mark: 'not imported.',
+  why: 'The terraces of the lagoon-front residence curve down to the water, with balustrades along every edge. Importing that many, in curves that matched the terraces, would have been slow and expensive.',
+  how: 'So I made them on site: a profile drawn for the house, a master shaped from it, a mould taken from the master, then every baluster and coping cast and fitted by my crew.',
+  link: { href: '/work/lagoon-front-residence', label: 'See the whole residence' },
+}
+
+/** The render was modelled afterwards to match the finished photo (.media-work/render), so it is labelled as an illustration. */
 export const renderToReality = {
   title: 'From render to reality',
-  intro: "The architect's render of a villa entrance on Banana Island, and the same entrance after his team finished it. Drag to compare.",
-  before: p('lagoon-residence/entrance-render', "The architect's render of the villa entrance"),
-  after: p('lagoon-residence/entrance-built', 'The finished entrance: arched porch, fountain and planted bed'),
+  mark: 'reality',
+  intro: 'A render shows the plan. The finished terrace shows the work: real stone underfoot, the mosaic pool, the balustrades I cast on site, and the lagoon behind. Drag to compare.',
+  before: p('lagoon-residence/terraces-3d-render', '3D render of the terraces, gazebo and pool'),
+  after: p('lagoon-residence/terraces-from-above', 'The finished terraces, gazebo and pool above the lagoon, with the city across the water'),
+  labels: ['Render (illustration)', 'Finished'] as const,
 }
 
 export const details = {
@@ -78,7 +116,7 @@ export const details = {
 
 export const onSite = {
   title: 'On site, every day',
-  intro: "He doesn't manage from an office. He checks every slab, line and joint himself, and stays with the crew until it's right.",
+  intro: "I don't manage from an office. I check every slab, line and joint myself, and stay with the crew until it's right.",
   photos: [
     p('him/kneeling-onyx', 'Mahmoud Kronbi kneeling to inspect a newly laid onyx floor'),
     p('him/inspecting-inlay', 'Mahmoud Kronbi checking an inlaid corridor floor'),
@@ -88,10 +126,11 @@ export const onSite = {
   ],
 }
 
+/** The structural work, shown as proof he can run a large site. */
 export const scale = {
-  title: 'Built to scale',
-  intro:
-    'Finishing a large building means running large crews. He has managed whole builds, from pile foundations on the Lagos lagoon to box culverts in Kano, so a big site is familiar ground.',
+  title: 'Behind other hoardings',
+  intro: 'The structure is usually by others. I have run that too, from pile foundations on the Lagos lagoon to box culverts in Kano.',
+  link: { href: '/work/built-to-scale', label: 'See the structural work' },
   items: [
     { photo: p('built-to-scale/foundations-wide', 'Large foundation site beside the Lagos lagoon'), caption: 'Lagoon-front foundations, Lagos' },
     { photo: p('built-to-scale/culverts-formwork', 'Timber formwork for box culverts'), caption: 'Box culverts, Makarfi, Kano' },
@@ -100,15 +139,18 @@ export const scale = {
   ] satisfies Caption[],
 }
 
+/** A short about that opens with hello in English, Arabic and Yoruba. */
 export const about = {
-  title: 'About Mahmoud',
-  lede: 'Mahmoud Kronbi came to Nigeria from Lebanon and has spent more than twenty years building and finishing across the country, in Lagos, Abuja, Ibadan, Kano, Lokoja and Ogbomosho.',
-  body: 'He runs his own company, RAZANCO Nigeria Limited (RC 168931), and works with private owners, consultants and construction firms on villas, halls, guest houses, factories and infrastructure. He speaks English, Arabic and French.',
-  references: 'References are available on request.',
+  greeting: ['Hello.', 'Marhaba.', 'Báwo.'],
+  lede: "I'm Mahmoud. I came to Nigeria from Lebanon and have spent more than twenty years building and finishing here, for private owners, consultants and construction firms.",
+  facts: ['RAZANCO Nigeria Limited, RC 168931', 'English, Arabic and French', 'References on request'],
   photo: p('him/portrait-lagoon', 'Mahmoud Kronbi in a hard hat on a balcony above the lagoon'),
+  snapshot: p('him/with-worker', 'Mahmoud Kronbi with one of his workers on site, both in hard hats'),
 }
 
-export const contactBlock = {
-  title: 'Planning a building? Talk to him about the finish.',
-  text: 'Send drawings or photos of your project on WhatsApp, or call him directly.',
+/** The contact, as his visiting card lying on his CV. It closes the home page and every project page. */
+export const contactCard = {
+  title: 'Planning a building? Talk to me about the finish.',
+  mark: 'the finish.',
+  text: 'Send drawings or photos of your project on WhatsApp, or call me directly. Save my number so it is there when the project starts.',
 }

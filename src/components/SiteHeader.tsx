@@ -6,10 +6,10 @@ import { site } from '@/content/site'
 import { cn } from '@/lib/utils'
 
 const links = [
-  { href: '/#finishes', label: 'What he finishes' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { hash: '#finishes', label: 'What I finish' },
+  { hash: '#work', label: 'Work' },
+  { hash: '#about', label: 'About' },
+  { hash: '#contact', label: 'Contact' },
 ]
 
 export function SiteHeader() {
@@ -38,8 +38,8 @@ export function SiteHeader() {
       >
         {links.map((link) => (
           <Link
-            key={link.href}
-            href={link.href}
+            key={link.hash}
+            href={`/${link.hash}`}
             onClick={() => setOpen(false)}
             className="border-b border-hair px-[18px] py-3.5 text-[15px] font-medium no-underline hover:text-rosso md:border-0 md:p-0"
           >

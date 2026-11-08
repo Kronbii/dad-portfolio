@@ -15,7 +15,11 @@ export type Photo = { src: string; alt: string }
 
 export type Caption = { photo: Photo; caption: string }
 
-export type Trade = { title: string; text: string; photo: Photo }
+/** A trade on the home page: its photo, and a second one that crossfades in on hover. */
+export type Tile = { name: string; photo: Photo; second: Photo }
+
+/** A place on the map of Nigeria, in the map's own units (see components/sections/nigeria.ts). */
+export type Place = { name: string; work: string; x: number; y: number; labelAbove?: boolean; photo: Photo }
 
 export type Step = { title: string; text: string; photo: Photo }
 

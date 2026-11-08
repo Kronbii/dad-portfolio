@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import { about, contactBlock, details, onSite, scale, site } from '@/content/site'
-import { ContactActions } from '../ContactActions'
-import { Inlay } from '../Inlay'
+import { details, onSite, scale } from '@/content/site'
 import { Photo } from '../Photo'
 import { SectionHead } from '../SectionHead'
+import styles from './home.module.css'
 
 /** Close-ups in tiles with dark grout, like the black borders in his floors. */
 export function DetailTiles() {
@@ -38,57 +37,27 @@ export function OnSite() {
   )
 }
 
-export function ScaleBand() {
+/** "Behind other hoardings": the structural work, quiet and dark, colour returning under the pointer. */
+export function BehindHoardings() {
   return (
-    <div className="section-gap">
-      <div className="border-y border-hair bg-paper py-[clamp(56px,7vw,96px)]">
-        <div className="wrap">
-          <SectionHead title={scale.title} intro={scale.intro} />
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {scale.items.map((item) => (
-              <figure key={item.caption} className="m-0">
-                <Photo photo={item.photo} ratio="4 / 3" sizes="(max-width: 1024px) 50vw, 300px" className="grayscale-[.45]" />
-                <figcaption className="mt-2.5 text-sm text-vein">{item.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
-          <Link href="/work/built-to-scale" className="mt-8 inline-block font-semibold text-rosso underline decoration-rosso/40 underline-offset-4 hover:decoration-rosso">
-            See the structural work
-          </Link>
+    <section className={styles.hoardings}>
+      <div className="wrap">
+        <div className="grid items-end gap-x-16 gap-y-5 md:grid-cols-2">
+          <h2 className="t-h2">{scale.title}</h2>
+          <p className={styles.hoardingsLede}>{scale.intro}</p>
         </div>
-      </div>
-    </div>
-  )
-}
-
-export function About() {
-  return (
-    <section id="about" className="section-gap">
-      <div className="wrap grid items-center gap-[clamp(28px,6vw,96px)] md:grid-cols-[.8fr_1.2fr]">
-        <Inlay photo={about.photo} ratio="3 / 4" sizes="(max-width: 768px) 100vw, 440px" />
-        <div>
-          <h2 className="t-h2">{about.title}</h2>
-          <p className="t-lede mt-6 max-w-[62ch]">{about.lede}</p>
-          <p className="mt-[18px] max-w-[62ch]">{about.body}</p>
-          <p className="mt-[18px] text-vein">{about.references}</p>
-        </div>
+        <ul className={styles.hoardingsRow}>
+          {scale.items.map((item) => (
+            <li key={item.caption}>
+              <Photo photo={item.photo} ratio="4 / 3" sizes="(max-width: 900px) 50vw, 300px" />
+              <span>{item.caption}</span>
+            </li>
+          ))}
+        </ul>
+        <Link href={scale.link.href} className={styles.hoardingsLink}>
+          {scale.link.label}
+        </Link>
       </div>
     </section>
-  )
-}
-
-/** Bookends the hero with the same double rule. */
-export function ContactBlock() {
-  return (
-    <div className="wrap section-gap">
-      <div id="contact" className="double-rule scroll-mt-6 p-[clamp(36px,6vw,88px)] text-center">
-        <h2 className="t-h2 mx-auto max-w-[18ch]">{contactBlock.title}</h2>
-        <p className="mx-auto mt-5 max-w-[62ch] text-vein">{contactBlock.text}</p>
-        <ContactActions className="mt-8 justify-center" />
-        <a href={site.cv.pdf} className="mt-7 inline-block font-medium underline underline-offset-4" download>
-          Download his CV (PDF)
-        </a>
-      </div>
-    </div>
   )
 }

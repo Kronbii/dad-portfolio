@@ -6,7 +6,7 @@ import { GalleryGrid } from '@/components/GalleryGrid'
 import { Inlay } from '@/components/Inlay'
 import { Lightbox } from '@/components/Lightbox'
 import { Photo } from '@/components/Photo'
-import { ContactBlock } from '@/components/sections/HomeSections'
+import { ContactCard } from '@/components/sections/Closing'
 import { Steps } from '@/components/sections/Steps'
 import { getProject, projects } from '@/content/projects'
 
@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }: PageProps<'/work/[slug]'>)
         </div>
       </section>
 
-      <ContactBlock />
+      <ContactCard />
       <Lightbox />
     </>
   )

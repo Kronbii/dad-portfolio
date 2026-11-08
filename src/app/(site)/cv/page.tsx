@@ -18,7 +18,7 @@ export default function CvPage() {
   return (
     <div className="wrap pb-6 print:max-w-none print:p-0">
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-vein">This is his CV as a web page. You can also download it.</p>
+        <p className="text-vein">This is my CV as a web page. You can also download it.</p>
         <a href={site.cv.pdf} download className="inline-flex min-h-11 items-center rounded-[2px] border-[1.5px] border-ink bg-ink px-5 font-semibold text-field no-underline hover:border-rosso hover:bg-rosso">
           Download PDF
         </a>

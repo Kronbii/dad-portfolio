@@ -11,17 +11,17 @@ export const projects: Project[] = [
     slug: 'lagoon-front-residence',
     title: 'Lagoon-front residence, Lagos',
     summary:
-      "A private residence on the Lagos lagoon, finished outside to the architect's design: balustrades he made on site, curving terraces, a pool with gazebos, stone paving and gardens down to the water.",
+      "A private residence on the Lagos lagoon, finished outside to the architect's design: balustrades I made on site, curving terraces, a pool with gazebos, stone paving and gardens down to the water.",
     story: [
       'The work was the whole outside of a lagoon-front house: terraces that curve down towards the water, a pool with thatched gazebos, a stair to the jetty, stone paving, planting, and balustrades along every edge.',
-      'Importing that many balustrades, in curves that matched the terraces, would have been slow and expensive. He made them on site instead, from a profile drawn for the house, and cast the curved copings to fit each bend.',
-      'He ran the crews from setting out to the last planted bed, and was on site through all of it.',
+      'Importing that many balustrades, in curves that matched the terraces, would have been slow and expensive. I made them on site instead, from a profile drawn for the house, and cast the curved copings to fit each bend.',
+      'I ran the crews from setting out to the last planted bed, and was on site through all of it.',
     ],
     facts: [
       { label: 'Location', value: verify('Lagos lagoon. Is it Banana Island?') },
       { label: 'Client', value: 'Private, name withheld' },
       { label: 'Scope', value: 'Exterior finishing, balustrades, terraces, pool and landscape' },
-      { label: 'His role', value: 'Construction and project manager' },
+      { label: 'My role', value: 'Construction and project manager' },
       { label: 'Year', value: verify('Year completed') },
     ],
     cover: lagoon('lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'),
@@ -92,14 +92,14 @@ export const projects: Project[] = [
     summary:
       'Whole floors of marble and onyx: inlaid floors, book-matched walls, bathrooms and staircases, with dome and stained-glass ceilings above.',
     story: [
-      'Marble is unforgiving. A border that drifts a few millimetres shows across a whole room, and a slab set the wrong way breaks the run of the veins. That is why he stays on site while it is laid, checking lines, joints and levels as the work goes.',
+      'Marble is unforgiving. A border that drifts a few millimetres shows across a whole room, and a slab set the wrong way breaks the run of the veins. That is why I stay on site while it is laid, checking lines, joints and levels as the work goes.',
       'These photos come from several private homes: onyx and white marble walls with ornamental borders, inlaid medallions, rose and grey marble bathrooms, marble staircases, parquet, a dome ceiling and stained glass.',
     ],
     facts: [
       { label: 'Location', value: verify('Lagos and Abuja? Which homes?') },
       { label: 'Client', value: 'Private homes' },
       { label: 'Scope', value: 'Floors, walls, bathrooms, staircases, ceilings' },
-      { label: 'His role', value: 'Finishing manager, on site daily' },
+      { label: 'My role', value: 'Finishing manager, on site daily' },
       { label: 'Year', value: verify('Years') },
     ],
     cover: marble('marble-staircase', 'Marble staircase with an inlaid floor border at its foot'),
@@ -183,7 +183,7 @@ export const projects: Project[] = [
       { label: 'Location', value: 'Ibadan, Oyo State' },
       { label: 'Client', value: verify('Client, or "Private"') },
       { label: 'Scope', value: 'Interior finishing: floor, walls, ceiling' },
-      { label: 'His role', value: 'Construction and project manager' },
+      { label: 'My role', value: 'Construction and project manager' },
       { label: 'Year', value: verify('Year completed') },
     ],
     cover: p('event-hall/hall-stage', 'Event hall with a polished checkered floor, stage and LED wall'),
@@ -207,14 +207,14 @@ export const projects: Project[] = [
     slug: 'built-to-scale',
     title: 'Built to scale',
     summary:
-      'Finishing a large building means running large crews. These are structural jobs he has managed, from pile foundations on the Lagos lagoon to box culverts in Kano.',
+      'Finishing a large building means running large crews. These are structural jobs I have managed, from pile foundations on the Lagos lagoon to box culverts in Kano.',
     story: [
-      'His main work is finishing, but he has run whole builds, and that is why a large site does not worry him. He knows how a structure was made before the first tile goes on.',
+      'My main work is finishing, but I have run whole builds, and that is why a large site does not worry me. I know how a structure was made before the first tile goes on.',
     ],
     facts: [
       { label: 'Locations', value: 'Lagos, Kano, Abuja, Lokoja, Ogbomosho' },
       { label: 'Scope', value: 'Foundations, culverts, concrete frames and slabs' },
-      { label: 'His role', value: 'Construction manager' },
+      { label: 'My role', value: 'Construction manager' },
     ],
     cover: scale('foundations-wide', 'Large foundation site beside the Lagos lagoon'),
     thumbs: [

@@ -34,3 +34,6 @@ mockups/
 .idea/
 *.log
 *.pem
+
+# Design review captures
+.impeccable/review/

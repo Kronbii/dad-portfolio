@@ -22,7 +22,8 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     rules: {
-      "*.css": {
+      // Tailwind only processes the global stylesheet; CSS modules keep Next's own handling.
+      "globals.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },

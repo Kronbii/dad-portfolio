@@ -1,13 +1,12 @@
-import { Mail, Phone } from 'lucide-react'
 import { site } from '@/content/site'
 import { cn } from '@/lib/utils'
 
 const btn =
   'inline-flex min-h-12 items-center gap-2.5 rounded-[2px] border-[1.5px] border-ink px-[22px] text-base font-semibold no-underline transition-colors'
-export const btnSolid = cn(btn, 'bg-ink text-field hover:border-rosso hover:bg-rosso')
+const btnSolid = cn(btn, 'bg-ink text-field hover:border-rosso hover:bg-rosso')
 export const btnLine = cn(btn, 'hover:bg-paper')
 
-export function WhatsAppIcon({ className }: { className?: string }) {
+function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={cn('size-[18px] shrink-0', className)}>
       <path
@@ -24,22 +23,5 @@ export function WhatsAppButton({ className }: { className?: string }) {
       <WhatsAppIcon />
       Chat on WhatsApp
     </a>
-  )
-}
-
-/** All three ways to reach him: WhatsApp first, then a call, then email. */
-export function ContactActions({ className }: { className?: string }) {
-  return (
-    <div className={cn('flex flex-wrap gap-3', className)}>
-      <WhatsAppButton />
-      <a className={btnLine} href={site.contact.phone.href}>
-        <Phone className="size-[18px]" aria-hidden />
-        Call {site.contact.phone.label}
-      </a>
-      <a className={btnLine} href={`mailto:${site.contact.email}`}>
-        <Mail className="size-[18px]" aria-hidden />
-        Email him
-      </a>
-    </div>
   )
 }
