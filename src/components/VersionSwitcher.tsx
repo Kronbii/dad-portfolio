@@ -4,7 +4,6 @@ import styles from './VersionSwitcher.module.css'
 const versions = [
   { href: '/v1', label: 'v1', title: 'Gallery (current site)' },
   { href: '/v2', label: 'v2', title: 'Showreel' },
-  { href: '/v3', label: 'v3', title: 'Company profile' },
   { href: '/v4', label: 'v4', title: 'Photo wall' },
 ]
 

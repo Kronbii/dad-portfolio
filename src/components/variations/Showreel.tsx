@@ -4,6 +4,7 @@ import type { Photo as PhotoType, Project } from '@/content/types'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
 import { Photo } from '../Photo'
+import { ReelStage } from './ReelStage'
 import styles from './variations.module.css'
 
 const p = (src: string, alt: string): PhotoType => ({ src, alt })
@@ -18,57 +19,32 @@ const scenes = [
 
 const corners = ['left-[9px] top-[9px]', 'left-[calc(100%-9px)] top-[9px]', 'left-[9px] top-[calc(100%-9px)]', 'left-[calc(100%-9px)] top-[calc(100%-9px)]']
 
-/** v1's framed hero, held still while five finished rooms dissolve through the inlay as you scroll. */
+/** v1's framed hero with one line, two actions and five finished rooms taking turns in the inlay. The page scrolls normally. */
 export function Reel() {
   return (
-    <div className={styles.reel} id="top">
-      <div className={styles.reelSticky}>
-        <div className="wrap w-full">
-          <div className={styles.reelFrame}>
-            <div className="hero-frame" aria-hidden />
-            <div className="hero-frame-inner" aria-hidden />
-            {corners.map((pos) => (
-              <span key={pos} className={`hero-corner ${pos}`} aria-hidden />
-            ))}
-            <div className={styles.reelGrid}>
-              <div>
-                <p className="hero-rise mb-[22px] text-[15px] font-semibold text-rosso">{site.role}</p>
-                <h1 className="hero-rise hero-rise-2 t-h1 max-w-[13ch]">{hero.headline}</h1>
-                <div className="hero-rise hero-rise-3 mt-9 flex flex-wrap gap-3">
-                  <WhatsAppButton />
-                  <Link className={`${btnLine} max-md:hidden`} href="#work">
-                    See his work
-                  </Link>
-                </div>
-              </div>
-              <div className={styles.reelInlay}>
-                <div className="inlay scoop">
-                  <div className="inlay-gap scoop">
-                    <div className={`inlay-media scoop ${styles.reelStage}`}>
-                      {scenes.map((scene, i) => (
-                        <div key={scene.photo.src} className={styles.scene} style={{ '--i': i } as React.CSSProperties}>
-                          <Photo photo={scene.photo} sizes="(max-width: 900px) 70vw, 460px" priority={i === 0} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.reelCaption}>
-                  <p className={styles.captions}>
-                    {scenes.map((scene, i) => (
-                      <span key={scene.caption} style={{ '--i': i } as React.CSSProperties} aria-hidden={i > 0}>
-                        {scene.caption}
-                      </span>
-                    ))}
-                  </p>
-                  <span className={styles.marks} aria-hidden>
-                    {scenes.map((scene, i) => (
-                      <i key={scene.caption} style={{ '--i': i } as React.CSSProperties} />
-                    ))}
-                  </span>
-                </div>
-              </div>
+    <div className="wrap" id="top">
+      <div className={styles.reelFrame}>
+        <div className="hero-frame" aria-hidden />
+        <div className="hero-frame-inner" aria-hidden />
+        {corners.map((pos) => (
+          <span key={pos} className={`hero-corner ${pos}`} aria-hidden />
+        ))}
+        <div className={styles.reelGrid}>
+          <div>
+            <p className="hero-rise mb-[22px] text-[15px] font-semibold text-rosso">{site.role}</p>
+            <h1 className="hero-rise hero-rise-2 t-h1 max-w-[13ch]">{hero.headline}</h1>
+            <div className="hero-rise hero-rise-3 mt-9 flex flex-wrap gap-3">
+              <WhatsAppButton />
+              <Link className={`${btnLine} max-md:hidden`} href="#work">
+                See my work
+              </Link>
             </div>
+          </div>
+          <div className={styles.reelInlay}>
+            <ReelStage
+              captions={scenes.map((scene) => scene.caption)}
+              photos={scenes.map((scene, i) => <Photo key={scene.photo.src} photo={scene.photo} sizes="(max-width: 900px) 80vw, 420px" priority={i === 0} />)}
+            />
           </div>
         </div>
       </div>

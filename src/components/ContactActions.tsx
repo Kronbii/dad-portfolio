@@ -27,7 +27,7 @@ export function WhatsAppButton({ className }: { className?: string }) {
   )
 }
 
-/** All three ways to reach him: WhatsApp first, then a call, then email. */
+/** All three ways to reach me: WhatsApp first, then a call, then email. */
 export function ContactActions({ className }: { className?: string }) {
   return (
     <div className={cn('flex flex-wrap gap-3', className)}>
@@ -38,7 +38,7 @@ export function ContactActions({ className }: { className?: string }) {
       </a>
       <a className={btnLine} href={`mailto:${site.contact.email}`}>
         <Mail className="size-[18px]" aria-hidden />
-        Email him
+        Email me
       </a>
     </div>
   )

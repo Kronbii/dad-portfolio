@@ -16,7 +16,7 @@ export default function HomePage() {
       <TradeGrid />
       <section id="work" className="section-gap">
         <div className="wrap">
-          <SectionHead title="Selected work" intro="Private homes and large buildings, finished under his direct management." />
+          <SectionHead title="Selected work" intro="Private homes and large buildings, finished under my direct management." />
           <div className="flex flex-col gap-[clamp(64px,8vw,112px)]">
             {featured.map((project, i) => (
               <ProjectFeature key={project.slug} project={project} flip={i % 2 === 1} />

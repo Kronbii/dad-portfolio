@@ -1,9 +1,11 @@
 import Link from 'next/link'
-import { hero, site } from '@/content/site'
+import { finishes, hero, site } from '@/content/site'
 import type { Photo as PhotoType, Project } from '@/content/types'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
 import { Photo } from '../Photo'
+import { SectionHead } from '../SectionHead'
+import { ProjectFeature } from '../sections/ProjectFeature'
 import { tiles } from './LikedSections'
 import styles from './variations.module.css'
 
@@ -45,7 +47,7 @@ export function Wall() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <WhatsAppButton />
           <Link className={btnLine} href="#work">
-            See his work
+            See my work
           </Link>
         </div>
       </div>
@@ -60,7 +62,7 @@ export function SidewaysTrades() {
       <div className={styles.sidewaysSticky}>
         <ul className={styles.sidewaysTrack}>
           <li className={styles.sidewaysTitle}>
-            <h2 className="t-h2">What he finishes</h2>
+            <h2 className="t-h2">{finishes.title}</h2>
             <p className="mt-4 max-w-[30ch] text-vein">Inside and out, from the first tile to the final polish.</p>
           </li>
           {tiles.map((tile) => (
@@ -75,25 +77,15 @@ export function SidewaysTrades() {
   )
 }
 
-/** Selected work as paper cards that stack as you scroll: three photos and a name each. */
-export function WorkStack({ projects }: { projects: Project[] }) {
+/** Selected work as on v1: a framed cover with thumbnails, and the facts beside it. */
+export function FeaturedWork({ projects }: { projects: Project[] }) {
   return (
     <section id="work" className="section-gap">
       <div className="wrap">
-        <h2 className="t-h2 mb-10 md:mb-14">Selected work</h2>
-        <div className={styles.stack}>
+        <SectionHead title="Selected work" intro="Private homes and large buildings, finished under my direct management." />
+        <div className="flex flex-col gap-[clamp(64px,8vw,112px)]">
           {projects.map((project, i) => (
-            <article key={project.slug} className={styles.stackCard} style={{ '--i': i } as React.CSSProperties}>
-              <Inlay photo={project.cover} small sizes="(max-width: 900px) 50vw, 460px" reveal={false} />
-              <Inlay photo={project.thumbs[0]} small sizes="(max-width: 900px) 50vw, 360px" reveal={false} />
-              <Inlay photo={project.thumbs[1] ?? project.thumbs[0]} small sizes="360px" reveal={false} />
-              <div className={styles.stackText}>
-                <h3 className="t-h3">{project.title}</h3>
-                <Link href={`/work/${project.slug}`} className={styles.bandLink}>
-                  See the project
-                </Link>
-              </div>
-            </article>
+            <ProjectFeature key={project.slug} project={project} flip={i % 2 === 1} />
           ))}
         </div>
       </div>

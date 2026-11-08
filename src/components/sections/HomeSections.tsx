@@ -86,7 +86,7 @@ export function ContactBlock() {
         <p className="mx-auto mt-5 max-w-[62ch] text-vein">{contactBlock.text}</p>
         <ContactActions className="mt-8 justify-center" />
         <a href={site.cv.pdf} className="mt-7 inline-block font-medium underline underline-offset-4" download>
-          Download his CV (PDF)
+          Download my CV (PDF)
         </a>
       </div>
     </div>

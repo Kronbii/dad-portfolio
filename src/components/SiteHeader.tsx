@@ -7,7 +7,7 @@ import { site } from '@/content/site'
 import { cn } from '@/lib/utils'
 
 const links = [
-  { hash: '#finishes', label: 'What he finishes' },
+  { hash: '#finishes', label: 'What I finish' },
   { hash: '#work', label: 'Work' },
   { hash: '#about', label: 'About' },
   { hash: '#contact', label: 'Contact' },

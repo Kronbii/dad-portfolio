@@ -31,7 +31,7 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={`${marcellus.variable} ${figtree.variable}`}>
+    <html lang="en" className={`${marcellus.variable} ${figtree.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />

@@ -1,20 +1,22 @@
 import Link from 'next/link'
-import { madeOnSite, onSite, scale, site } from '@/content/site'
+import { finishes, madeOnSite, madeOnSitePosters, scale } from '@/content/site'
 import type { Photo as PhotoType } from '@/content/types'
-import { Inlay } from '../Inlay'
 import { Photo } from '../Photo'
 import styles from './variations.module.css'
 
 const tilts = [-2.2, 1.4, -0.8, 2, -1.6, 0.9]
 
-/** "Made on site, not imported": the balustrade steps pasted up like posters, in v1's paper and rosso. */
+/** "Made on site, not imported": the balustrade steps pasted up like posters, each with what happened at that step. */
 export function Posters() {
   return (
     <section id="made" className={styles.posters}>
       <div className="wrap">
         <div className={styles.postersHead}>
-          <h2 className="t-h2">Made on site, not imported.</h2>
-          <p className="max-w-[52ch] text-vein">Every baluster and curved coping on the lagoon-front residence was made on site, from a profile drawn for the house.</p>
+          <h2 className="t-h2">{madeOnSitePosters.title}</h2>
+          <div className={styles.postersWhy}>
+            <p>{madeOnSitePosters.why}</p>
+            <p>{madeOnSitePosters.how}</p>
+          </div>
         </div>
         <ol className={styles.posterWall}>
           {madeOnSite.steps.map((step, i) => (
@@ -24,35 +26,15 @@ export function Posters() {
                 <span>{i + 1}</span>
                 {step.title}
               </p>
+              <p className={styles.posterText}>{step.text}</p>
             </li>
           ))}
         </ol>
-      </div>
-    </section>
-  )
-}
-
-/** "The name on the board is on the site every day": portrait, three site photos, one line about him. */
-export function NameOnBoard() {
-  const strip: PhotoType[] = [onSite.photos[0], onSite.photos[2], onSite.photos[4]]
-  return (
-    <section id="about" className="section-gap">
-      <div className={`wrap ${styles.board}`}>
-        <Inlay photo={{ src: 'him/portrait-lagoon', alt: 'Mahmoud Kronbi in a hard hat on a balcony above the lagoon' }} ratio="3 / 4" sizes="(max-width: 768px) 100vw, 460px" />
-        <div>
-          <h2 className="t-h2 max-w-[16ch]">The name on the board is on the site every day.</h2>
-          <p className="t-lede mt-5 max-w-[46ch]">He checks every slab, line and joint himself.</p>
-          <ul className={styles.boardStrip}>
-            {strip.map((photo) => (
-              <li key={photo.src}>
-                <Photo photo={photo} ratio="3 / 4" sizes="(max-width: 768px) 30vw, 180px" />
-              </li>
-            ))}
-          </ul>
-          <p className={styles.boardAbout}>
-            Lebanese, more than twenty years in Nigeria. Runs {site.company.name} (RC {site.company.rc}). Speaks English, Arabic and French.
-          </p>
-        </div>
+        <p className="mt-10 md:mt-14">
+          <Link href={madeOnSitePosters.link.href} className={styles.bandLink}>
+            {madeOnSitePosters.link.label}
+          </Link>
+        </p>
       </div>
     </section>
   )
@@ -65,7 +47,7 @@ export function BehindHoardings() {
       <div className="wrap">
         <div className="grid items-end gap-x-16 gap-y-5 md:grid-cols-2">
           <h2 className="t-h2">Behind other hoardings</h2>
-          <p className={styles.hoardingsLede}>The structure is usually by others. He has run that too, from pile foundations on the Lagos lagoon to box culverts in Kano.</p>
+          <p className={styles.hoardingsLede}>The structure is usually by others. I have run that too, from pile foundations on the Lagos lagoon to box culverts in Kano.</p>
         </div>
         <ul className={styles.hoardingsRow}>
           {scale.items.map((item) => (
@@ -98,7 +80,7 @@ export const tiles: Tile[] = [
 ]
 
 /** What he finishes, as pictures with names. A second photo crossfades in on hover. */
-export function TradeTiles({ title = 'What he finishes' }: { title?: string }) {
+export function TradeTiles({ title = finishes.title }: { title?: string }) {
   return (
     <section id="finishes" className="section-gap">
       <div className="wrap">

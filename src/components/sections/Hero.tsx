@@ -23,7 +23,7 @@ export function Hero() {
             <div className="hero-rise hero-rise-3 mt-8 flex flex-wrap gap-3">
               <WhatsAppButton />
               <Link className={btnLine} href="#work">
-                See his work
+                See my work
               </Link>
             </div>
           </div>
