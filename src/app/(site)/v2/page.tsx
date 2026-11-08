@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { DetailTiles, OnSite } from '@/components/sections/HomeSections'
 import { RenderToReality } from '@/components/sections/RenderToReality'
 import { AcrossNigeria } from '@/components/variations/AcrossNigeria'
-import { AboutShort, ContactWhatsApp } from '@/components/variations/Closing'
+import { AboutShort, ContactCard } from '@/components/variations/Closing'
 import { BehindHoardings, Posters, TradeTiles } from '@/components/variations/LikedSections'
 import { ProjectBands, Reel } from '@/components/variations/Showreel'
 import { VersionSwitcher } from '@/components/VersionSwitcher'
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-/** The showreel opening, trade tiles and project bands, with the contact as a WhatsApp chat. */
+/** The showreel opening, trade tiles and project bands, with the contact as his visiting card on his CV. */
 export default function V2Page() {
   return (
     <>
@@ -29,7 +29,7 @@ export default function V2Page() {
       <OnSite />
       <BehindHoardings />
       <AboutShort />
-      <ContactWhatsApp />
+      <ContactCard />
       <VersionSwitcher current="v2" />
     </>
   )

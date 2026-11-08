@@ -171,7 +171,7 @@
 }
 @keyframes slide-sideways { to { transform: translateX(calc(-100% + 100vw)); } }
 
-/* ---------- shared: about, a greeting in his three languages ---------- */
+/* ---------- shared: about, opening with hello in three languages ---------- */
 .about { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(36px, 7vw, 110px); align-items: center; }
 .aboutPhotos { position: relative; padding: 0 12% 16% 0; }
 /* The scoop mask would clip a box-shadow on the frame itself, so the shadow sits on this wrapper. */
@@ -189,37 +189,7 @@
 }
 @keyframes greet-in { from { opacity: 0; translate: -0.35em 0; } }
 
-/* ---------- v2: contact as a WhatsApp chat ---------- */
-.contactChat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: clamp(32px, 6vw, 96px); align-items: center; padding: clamp(32px, 5.5vw, 80px); }
-.contactLines { display: grid; gap: 12px; margin: 30px 0 0; padding: 0; list-style: none; }
-.contactLines li { display: flex; align-items: center; gap: 10px; min-height: 28px; }
-.contactLines svg { flex: none; width: 18px; height: 18px; color: var(--color-rosso); }
-.contactLines a { font-weight: 500; text-underline-offset: 4px; }
-.chat { display: grid; background: var(--color-field); border: 1px solid var(--color-hair); box-shadow: 0 24px 60px rgb(33 30 27 / 0.14); }
-.chatHead { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--color-ink); color: var(--color-paper); }
-.chatHead strong { display: block; font-size: 15px; font-weight: 600; }
-.chatHead small { display: block; color: #d5cdc0; font-size: 13px; }
-.chatAvatar { --s: 9px; position: relative; flex: none; width: 44px; height: 44px; overflow: hidden; background: var(--color-vein); }
-.chatBody { display: grid; gap: 16px; padding: 20px 18px 4px; }
-.bubbleIn { justify-self: start; max-width: 88%; min-height: 48px; margin: 0; padding: 12px 14px; border: 1px solid var(--color-hair); border-radius: 2px 14px 14px 14px; background: var(--color-paper); font-size: 15px; line-height: 1.45; }
-.dots { display: inline-flex; gap: 5px; padding: 7px 2px; }
-.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-vein); animation: dot 1s ease-in-out infinite; }
-.dots i:nth-child(2) { animation-delay: 0.15s; }
-.dots i:nth-child(3) { animation-delay: 0.3s; }
-@keyframes dot { 0%, 60%, 100% { opacity: 0.3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
-.chips { min-width: 0; margin: 0; padding: 0; border: 0; }
-.chips legend { margin-bottom: 8px; padding: 0; color: var(--color-vein); font-size: 13px; }
-.chipRow { display: flex; flex-wrap: wrap; gap: 8px; }
-.chipRow button { min-height: 38px; padding: 0 14px; border: 1.25px solid rgb(138 45 34 / 0.45); border-radius: 2px; background: transparent; color: var(--color-ink); font: 500 14px/1 var(--font-sans); cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-.chipRow button:hover { border-color: var(--color-rosso); }
-.chipRow button[aria-pressed='true'] { border-color: var(--color-rosso); background: var(--color-rosso); color: var(--color-paper); }
-.bubbleOut { display: block; justify-self: end; width: 88%; }
-.bubbleOut textarea { display: block; width: 100%; min-height: 86px; padding: 12px 14px; border: 0; border-radius: 14px 2px 14px 14px; background: var(--color-ink); color: var(--color-paper); font: 15px/1.45 var(--font-sans); resize: none; field-sizing: content; }
-.bubbleOut textarea:focus-visible { outline: 2px solid var(--color-onyx); outline-offset: 3px; }
-.chatSend { justify-content: center; margin: 16px 18px 18px; }
-@media (prefers-reduced-motion: reduce) { .dots i { animation: none; } }
-
-/* ---------- v4: contact as his visiting card lying on his CV ---------- */
+/* ---------- contact as his visiting card lying on his CV ---------- */
 .desk { margin-top: clamp(72px, 10vw, 136px); padding: clamp(64px, 8vw, 120px) 0; background: #e3d9c8; overflow: hidden; }
 .deskGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
 .cards { position: relative; min-height: clamp(420px, 38vw, 520px); }
@@ -270,7 +240,7 @@
 
 /* ---------- phones ---------- */
 @media (max-width: 900px) {
-  .postersHead, .mapGrid, .about, .contactChat, .deskGrid { grid-template-columns: 1fr; }
+  .postersHead, .mapGrid, .about, .deskGrid { grid-template-columns: 1fr; }
   .posterWall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mapCard { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 16px; align-items: end; }
   .mapCard figcaption { margin: 0; }

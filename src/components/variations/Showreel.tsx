@@ -3,6 +3,7 @@ import { hero, site } from '@/content/site'
 import type { Photo as PhotoType, Project } from '@/content/types'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
+import { Marked } from '../Marked'
 import { Photo } from '../Photo'
 import { ReelStage } from './ReelStage'
 import styles from './variations.module.css'
@@ -32,7 +33,9 @@ export function Reel() {
         <div className={styles.reelGrid}>
           <div>
             <p className="hero-rise mb-[22px] text-[15px] font-semibold text-rosso">{site.role}</p>
-            <h1 className="hero-rise hero-rise-2 t-h1 max-w-[13ch]">{hero.headline}</h1>
+            <h1 className="hero-rise hero-rise-2 t-h1 max-w-[13ch]">
+              <Marked text={hero.headline} mark={hero.headlineMark} draw="load" />
+            </h1>
             <div className="hero-rise hero-rise-3 mt-9 flex flex-wrap gap-3">
               <WhatsAppButton />
               <Link className={`${btnLine} max-md:hidden`} href="#work">

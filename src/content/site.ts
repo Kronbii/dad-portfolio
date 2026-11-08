@@ -26,7 +26,9 @@ export const site = {
 }
 
 export const hero = {
-  headline: 'Anyone can put a building up. I make it beautiful.',
+  headline: 'Anyone can put a building up. I\u00a0make it beautiful.',
+  /** Highlighted in the design versions, in the text-selection rosso. Non-breaking spaces keep short words with their neighbours. */
+  headlineMark: 'I\u00a0make it beautiful.',
   lede:
     'For more than twenty years I have finished villas, halls and large buildings across Nigeria: marble, bathrooms, ceilings, floors, pools and facades. I run the work from the first tile to the final polish, and I am on site every day until it is right.',
   photo: p('marble-interiors/dome-ceiling', 'A finished dome ceiling with radiating mouldings and recessed lights above a double-height hall'),
@@ -68,11 +70,12 @@ export const renderToReality = {
   after: p('lagoon-residence/entrance-built', 'The finished entrance: arched porch, fountain and planted bed'),
 }
 
-/** The design versions compare the terraces instead. The render is drawn from the finished photo, so it is labelled as an illustration. */
+/** The design versions compare the terraces instead. The render was modelled afterwards to match the finished photo, so it is labelled as an illustration. */
 export const terracesRender = {
   title: 'From render to reality',
+  mark: 'reality',
   intro: 'A render shows the plan. The finished terrace shows the work: real stone underfoot, the mosaic pool, the balustrades I cast on site, and the lagoon behind. Drag to compare.',
-  before: p('lagoon-residence/terraces-render', 'Watercolour render of the terraces, gazebo and pool'),
+  before: p('lagoon-residence/terraces-render', '3D render of the terraces, gazebo and pool'),
   after: p('lagoon-residence/terraces-from-above', 'The finished terraces, gazebo and pool above the lagoon, with the city across the water'),
   labels: ['Render (illustration)', 'Finished'] as const,
 }
@@ -129,38 +132,25 @@ export const contactBlock = {
 
 /** The design versions: the balustrade story told on posters, with the reason behind it. */
 export const madeOnSitePosters = {
-  title: 'Made on site, not imported.',
+  title: 'Made on site, not\u00a0imported.',
+  mark: 'not\u00a0imported.',
   why: 'The terraces of the lagoon-front residence curve down to the water, with balustrades along every edge. Importing that many, in curves that matched the terraces, would have been slow and expensive.',
   how: 'So I made them on site: a profile drawn for the house, a master shaped from it, a mould taken from the master, then every baluster and coping cast and fitted by my crew.',
   link: { href: '/work/lagoon-front-residence', label: 'See the whole residence' },
 }
 
-/** The design versions: a shorter about, where the greeting says which languages he speaks. */
+/** The design versions: a shorter about that opens with hello in English, Arabic and Yoruba. */
 export const aboutShort = {
-  greeting: ['Hello.', 'Marhaba.', 'Bonjour.'],
+  greeting: ['Hello.', 'Marhaba.', 'Báwo.'],
   lede: "I'm Mahmoud. I came to Nigeria from Lebanon and have spent more than twenty years building and finishing here, for private owners, consultants and construction firms.",
   facts: ['RAZANCO Nigeria Limited, RC 168931', 'English, Arabic and French', 'References on request'],
   photo: p('him/portrait-lagoon', 'Mahmoud Kronbi in a hard hat on a balcony above the lagoon'),
   snapshot: p('him/with-worker', 'Mahmoud Kronbi with one of his workers on site, both in hard hats'),
 }
 
-/** The design versions: the contact as a WhatsApp message the visitor can shape before sending. */
-export const contactChat = {
-  title: 'Planning a building? Talk to me about the finish.',
-  text: 'Tell me what you are building and send the message. Drawings and photos are welcome once we are talking.',
-  invite: "Send me your drawings or a few photos of the site, and tell me what you're building.",
-  question: 'What are you building?',
-  choices: [
-    { label: 'A villa', text: "Hello Mr Kronbi, I'd like to discuss finishing work for a villa." },
-    { label: 'A large building', text: "Hello Mr Kronbi, I'd like to discuss finishing work for a large building." },
-    { label: 'A renovation', text: "Hello Mr Kronbi, I'd like to discuss a renovation." },
-    { label: 'Something else', text: whatsappText },
-  ],
-  defaultText: whatsappText,
-}
-
 /** The design versions: the contact as a visiting card lying on the CV. */
 export const contactCard = {
-  title: 'Planning a building? Talk to me about the finish.',
+  title: 'Planning a building? Talk to me about the\u00a0finish.',
+  mark: 'the\u00a0finish.',
   text: 'Send drawings or photos of your project on WhatsApp, or call me directly. Save my number so it is there when the project starts.',
 }

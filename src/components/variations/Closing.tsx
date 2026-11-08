@@ -1,13 +1,11 @@
-import { FileDown, Mail, Phone } from 'lucide-react'
-import { aboutShort, contactCard, contactChat, site } from '@/content/site'
+import { aboutShort, contactCard, site } from '@/content/site'
 import { cv } from '@/content/cv'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
-import { Photo } from '../Photo'
-import { ContactChat } from './ContactChat'
+import { Marked } from '../Marked'
 import styles from './variations.module.css'
 
-/** About, cut to a greeting in his three languages, one line, and three facts. A snapshot from site overlaps the portrait. */
+/** About, cut to a greeting (English, Arabic, Yoruba), one line, and three facts. A snapshot from site overlaps the portrait. */
 export function AboutShort() {
   return (
     <section id="about" className="section-gap">
@@ -38,44 +36,15 @@ export function AboutShort() {
   )
 }
 
-/** v2's contact: the heading and the other ways to reach him, beside a WhatsApp chat you can shape before sending. */
-export function ContactWhatsApp() {
-  return (
-    <div className="wrap section-gap">
-      <div id="contact" className={`double-rule scroll-mt-6 ${styles.contactChat}`}>
-        <div>
-          <h2 className="t-h2 max-w-[16ch]">{contactChat.title}</h2>
-          <p className="mt-5 max-w-[44ch] text-vein">{contactChat.text}</p>
-          <ul className={styles.contactLines}>
-            <li>
-              <Phone aria-hidden />
-              <a href={site.contact.phone.href}>Call {site.contact.phone.label}</a>
-            </li>
-            <li>
-              <Mail aria-hidden />
-              <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-            </li>
-            <li>
-              <FileDown aria-hidden />
-              <a href={site.cv.pdf} download>
-                Download my CV (PDF)
-              </a>
-            </li>
-          </ul>
-        </div>
-        <ContactChat avatar={<Photo photo={aboutShort.photo} sizes="48px" className="object-[48%_34%]" />} />
-      </div>
-    </div>
-  )
-}
-
-/** v4's contact: his visiting card lying on his CV. Tap the CV to download it, or save his number to your phone. */
+/** The contact: his visiting card lying on his CV. Tap the CV to download it, or save his number to your phone. */
 export function ContactCard() {
   return (
     <section id="contact" className={styles.desk}>
       <div className={`wrap ${styles.deskGrid}`}>
         <div>
-          <h2 className="t-h2 max-w-[16ch]">{contactCard.title}</h2>
+          <h2 className="t-h2 max-w-[16ch]">
+            <Marked text={contactCard.title} mark={contactCard.mark} draw="scroll" />
+          </h2>
           <p className="mt-5 max-w-[46ch] text-vein">{contactCard.text}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <WhatsAppButton />

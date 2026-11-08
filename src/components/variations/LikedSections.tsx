@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { finishes, madeOnSite, madeOnSitePosters, scale } from '@/content/site'
 import type { Photo as PhotoType } from '@/content/types'
+import { Marked } from '../Marked'
 import { Photo } from '../Photo'
 import styles from './variations.module.css'
 
@@ -12,7 +13,9 @@ export function Posters() {
     <section id="made" className={styles.posters}>
       <div className="wrap">
         <div className={styles.postersHead}>
-          <h2 className="t-h2">{madeOnSitePosters.title}</h2>
+          <h2 className="t-h2">
+            <Marked text={madeOnSitePosters.title} mark={madeOnSitePosters.mark} draw="scroll" />
+          </h2>
           <div className={styles.postersWhy}>
             <p>{madeOnSitePosters.why}</p>
             <p>{madeOnSitePosters.how}</p>

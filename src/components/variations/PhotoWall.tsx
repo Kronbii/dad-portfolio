@@ -3,6 +3,7 @@ import { finishes, hero, site } from '@/content/site'
 import type { Photo as PhotoType, Project } from '@/content/types'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
+import { Marked } from '../Marked'
 import { Photo } from '../Photo'
 import { SectionHead } from '../SectionHead'
 import { ProjectFeature } from '../sections/ProjectFeature'
@@ -43,7 +44,9 @@ export function Wall() {
       <div className={styles.wallVeil} aria-hidden />
       <div className={`double-rule ${styles.plaque}`}>
         <p className="mb-4 text-[15px] font-semibold text-rosso">{site.role}</p>
-        <h1 className={styles.plaqueTitle}>{hero.headline}</h1>
+        <h1 className={styles.plaqueTitle}>
+          <Marked text={hero.headline} mark={hero.headlineMark} draw="load" />
+        </h1>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <WhatsAppButton />
           <Link className={btnLine} href="#work">
