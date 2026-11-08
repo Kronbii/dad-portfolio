@@ -5,12 +5,13 @@ import { verify, type Fact } from './types'
 export const cv = {
   name: site.name,
   title: 'Finishing & Construction Project Manager',
+  /** Lines with an href are links on the page, in the PDF and in the Word file. */
   contact: [
-    { label: 'Phone and WhatsApp', value: site.contact.phone.label },
-    { label: 'Email', value: site.contact.email },
+    { label: 'Phone and WhatsApp', value: site.contact.phone.label, href: site.contact.phone.href },
+    { label: 'Email', value: site.contact.email, href: `mailto:${site.contact.email}` },
     { label: 'Based in', value: site.contact.city },
-    { label: 'Website', value: site.url.replace(/^https?:\/\//, '') },
-  ],
+    { label: 'Website', value: site.url.replace(/^https?:\/\//, ''), href: site.url },
+  ] as { label: string; value: string; href?: string }[],
   summary:
     'Finishing and construction project manager with more than twenty years of work across Nigeria. Takes buildings from structure to final finish: marble and stone, bathrooms, ceilings, floors, pools, facades and landscape. Runs the crews on site every day, holds work to an exact standard, and makes on site what cannot be bought locally.',
   expertise: [

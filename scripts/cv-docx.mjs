@@ -6,7 +6,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import ts from 'typescript'
-import { AlignmentType, BorderStyle, Document, LevelFormat, Packer, Paragraph, TabStopType, TextRun } from 'docx'
+import { AlignmentType, BorderStyle, Document, ExternalHyperlink, LevelFormat, Packer, Paragraph, TabStopType, TextRun } from 'docx'
 
 const root = path.resolve(import.meta.dirname, '..')
 const out = path.join(root, 'cv', 'mahmoud-kronbi-cv.docx')
@@ -48,7 +48,12 @@ const para = (children, opts = {}) => new Paragraph({ children: typeof children 
 const children = [
   new Paragraph({ heading: 'Title', children: [new TextRun(cv.name)] }),
   para([new TextRun({ text: cv.title, bold: true, color: ROSSO, size: 24 })], { spacing: { after: 120 } }),
-  ...cv.contact.map((c) => para([new TextRun({ text: `${c.label}: `, color: VEIN }), new TextRun(c.value)])),
+  ...cv.contact.map((c) =>
+    para([
+      new TextRun({ text: `${c.label}: `, color: VEIN }),
+      c.href ? new ExternalHyperlink({ link: c.href, children: [new TextRun({ text: c.value, color: ROSSO, underline: {} })] }) : new TextRun(c.value),
+    ]),
+  ),
 
   heading('Profile'),
   para(cv.summary),
