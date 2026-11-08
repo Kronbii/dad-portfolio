@@ -1,6 +1,6 @@
-/* Variations of v1: same palette, type and inlay frames (globals.css); only structure and motion change. */
+/* Home page sections. Palette, type and inlay frames come from globals.css; this file adds structure and motion. */
 
-/* ---------- shared: posters ---------- */
+/* ---------- made on site: posters ---------- */
 .posters { margin-top: clamp(72px, 10vw, 136px); padding: clamp(64px, 8vw, 110px) 0; background: #e3d9c8; }
 .postersHead { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 20px clamp(28px, 5vw, 80px); align-items: end; }
 .postersWhy { display: grid; gap: 12px; max-width: 58ch; color: var(--color-vein); }
@@ -31,7 +31,7 @@
 .posterTitle span { color: var(--color-rosso); font-size: 0.85em; }
 .posterText { margin: 6px 0 0; color: var(--color-vein); font-size: 14px; line-height: 1.45; }
 
-/* ---------- shared: behind other hoardings ---------- */
+/* ---------- behind other hoardings ---------- */
 .hoardings { margin-top: clamp(72px, 10vw, 136px); padding: clamp(64px, 8vw, 110px) 0; background: var(--color-ink); color: var(--color-paper); }
 .hoardingsLede { color: #d5cdc0; max-width: 52ch; }
 .hoardingsRow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: clamp(32px, 4vw, 48px) 0 0; padding: 0; list-style: none; }
@@ -40,18 +40,18 @@
 .hoardingsRow span { display: block; margin-top: 10px; font-size: 14px; color: #d5cdc0; }
 .hoardingsLink { display: inline-block; margin-top: 28px; font-weight: 600; color: #e2b867; text-underline-offset: 4px; }
 
-/* ---------- shared: trade tiles ---------- */
+/* ---------- what I finish: trade tiles ---------- */
 .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); margin: 0; padding: 0; list-style: none; }
 .tileMedia { position: relative; }
 .tileSecond { position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); transform: scale(1.04); }
 .tile:hover .tileSecond { opacity: 1; transform: none; }
 
-/* ---------- shared: one layer per photo, crossfading (hero reel, map) ---------- */
+/* ---------- one layer per photo, crossfading (hero reel, map) ---------- */
 .layer { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity 1.1s ease, transform 2.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .layer[data-shown] { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .layer { transform: none; transition: none; } }
 
-/* ---------- v2: the showreel hero ---------- */
+/* ---------- the showreel hero ---------- */
 /* The rooms take turns on a timer; the page itself scrolls normally. */
 .reelFrame { position: relative; width: 100%; margin-top: 8px; padding: clamp(24px, 4vw, 60px); }
 .reelGrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
@@ -65,7 +65,7 @@
 .marks i { width: 9px; height: 9px; border: 1.25px solid var(--color-rosso); transform: rotate(45deg); transition: background 0.5s ease; }
 .marks i[data-shown] { background: var(--color-rosso); }
 
-/* ---------- v2: project bands ---------- */
+/* ---------- selected work: project bands ---------- */
 .bands { display: grid; gap: clamp(56px, 8vw, 110px); }
 .band { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr); gap: clamp(16px, 2.4vw, 32px); align-items: end; }
 .band:nth-child(even) { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); }
@@ -76,7 +76,7 @@
 .bandLink { display: inline-block; margin-top: 18px; font-weight: 600; color: var(--color-rosso); text-decoration: underline; text-decoration-color: rgb(138 45 34 / 0.4); text-underline-offset: 4px; }
 .bandLink:hover { text-decoration-color: var(--color-rosso); }
 
-/* ---------- shared: across Nigeria ---------- */
+/* ---------- across Nigeria ---------- */
 .mapGrid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
 .mapWrap { position: relative; }
 .map { display: block; width: 100%; height: auto; overflow: visible; }
@@ -117,61 +117,7 @@
 @keyframes draw-land { from { stroke-dashoffset: 1; fill-opacity: 0; } 65% { fill-opacity: 0; } to { stroke-dashoffset: 0; fill-opacity: 1; } }
 @keyframes pin-in { from { opacity: 0; translate: 0 -12px; } }
 
-/* ---------- v4: the wall ---------- */
-.wall { position: relative; height: clamp(680px, 100svh, 1000px); overflow: hidden; }
-.wallCols { position: absolute; inset: -6% 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 0 16px; }
-.wallCol { display: grid; gap: 16px; align-content: start; }
-.wallCol:nth-child(2) { margin-top: -18%; }
-.wallCol:nth-child(3) { margin-top: -6%; }
-.wallCol:nth-child(4) { margin-top: -26%; }
-.wallTile { opacity: 1; }
-.wallVeil { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 50%, rgb(237 230 218 / 0.55), rgb(237 230 218 / 0) 70%); pointer-events: none; }
-.plaque {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  width: min(620px, calc(100% - 32px));
-  padding: clamp(28px, 4vw, 52px);
-  background: var(--color-paper);
-  text-align: center;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 30px 70px rgb(33 30 27 / 0.28);
-}
-.plaqueTitle { max-width: 16ch; margin-inline: auto; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.1; }
-@media (prefers-reduced-motion: no-preference) {
-  .wallTile { animation: assemble 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--d) * 70ms); }
-  .plaque { animation: plaqueIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both; }
-  @supports (animation-timeline: scroll()) {
-    .wallCol { animation: drift linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
-    .wallCol:nth-child(odd) { animation-name: driftUp; }
-  }
-}
-@keyframes assemble { from { opacity: 0; transform: translateY(24px) scale(0.94); } }
-@keyframes plaqueIn { from { opacity: 0; transform: translate(-50%, -46%); } }
-@keyframes drift { to { transform: translateY(-9%); } }
-@keyframes driftUp { to { transform: translateY(-3%); } }
-
-/* ---------- v4: trades, pinned and moving sideways as you scroll down ---------- */
-/* Without scroll-driven animations it is an ordinary swipeable strip. */
-.sideways { margin-top: clamp(72px, 10vw, 136px); }
-.sidewaysSticky { padding-block: 8px; }
-.sidewaysTrack { display: flex; gap: clamp(16px, 2vw, 28px); margin: 0; padding: 0 clamp(16px, 4vw, 48px) 18px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-color: var(--color-rosso) transparent; scrollbar-width: thin; }
-.sidewaysTrack li { flex: none; width: clamp(240px, 26vw, 360px); scroll-snap-align: start; }
-.sidewaysTrack li:first-child { width: clamp(260px, 30vw, 420px); align-self: center; scroll-snap-align: none; }
-.sidewaysTitle { padding-right: 12px; }
-.sidewaysName { margin-top: 14px; font-family: var(--font-display); font-size: clamp(21px, 2vw, 25px); line-height: 1.2; }
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .sideways { height: 280svh; view-timeline: --sideways block; }
-    .sidewaysSticky { position: sticky; top: 0; display: flex; align-items: center; height: 100svh; overflow: hidden; }
-    .sidewaysTrack { overflow: visible; width: max-content; animation: slide-sideways linear both; animation-timeline: --sideways; animation-range: contain 4% contain 96%; }
-    .sidewaysTrack li { width: clamp(220px, min(26vw, 44svh), 360px); }
-  }
-}
-@keyframes slide-sideways { to { transform: translateX(calc(-100% + 100vw)); } }
-
-/* ---------- shared: about, opening with hello in three languages ---------- */
+/* ---------- about, opening with hello in three languages ---------- */
 .about { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(36px, 7vw, 110px); align-items: center; }
 .aboutPhotos { position: relative; padding: 0 12% 16% 0; }
 /* The scoop mask would clip a box-shadow on the frame itself, so the shadow sits on this wrapper. */
@@ -252,8 +198,6 @@
   .band, .band:nth-child(even) { grid-template-columns: 1fr 1fr; }
   .band:nth-child(even) .bandText { order: 0; }
   .bandText { grid-column: 1 / -1; }
-  .wallCols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 10px; }
-  .wallCol:nth-child(n + 3) { display: none; }
   .aboutPhotos { width: min(100%, 440px); }
   .cards { min-height: 470px; }
   .card { width: 90%; }

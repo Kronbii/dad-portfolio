@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import styles from './variations.module.css'
+import styles from './home.module.css'
 
 /** The hero's framed photo: one room dissolves into the next every few seconds, with its caption. Still with reduced motion. */
 export function ReelStage({ photos, captions }: { photos: React.ReactNode[]; captions: string[] }) {

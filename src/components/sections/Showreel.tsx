@@ -1,22 +1,12 @@
 import Link from 'next/link'
 import { hero, site } from '@/content/site'
-import type { Photo as PhotoType, Project } from '@/content/types'
+import type { Project } from '@/content/types'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
 import { Marked } from '../Marked'
 import { Photo } from '../Photo'
 import { ReelStage } from './ReelStage'
-import styles from './variations.module.css'
-
-const p = (src: string, alt: string): PhotoType => ({ src, alt })
-
-const scenes = [
-  { photo: hero.photo, caption: 'Dome ceiling, private residence' },
-  { photo: p('marble-interiors/onyx-bath', 'Honey onyx and white marble wall panels with ornamental black borders'), caption: 'Onyx and marble bathroom' },
-  { photo: p('lagoon-residence/lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'), caption: 'Pool and terraces above the lagoon' },
-  { photo: p('marble-interiors/marble-staircase', 'Marble staircase with an inlaid floor border at its foot'), caption: 'Marble staircase and inlaid floor' },
-  { photo: p('marble-interiors/stained-glass-lit', 'Backlit stained-glass ceiling glowing above a hall'), caption: 'Stained-glass ceiling' },
-]
+import styles from './home.module.css'
 
 const corners = ['left-[9px] top-[9px]', 'left-[calc(100%-9px)] top-[9px]', 'left-[9px] top-[calc(100%-9px)]', 'left-[calc(100%-9px)] top-[calc(100%-9px)]']
 
@@ -45,8 +35,8 @@ export function Reel() {
           </div>
           <div className={styles.reelInlay}>
             <ReelStage
-              captions={scenes.map((scene) => scene.caption)}
-              photos={scenes.map((scene, i) => <Photo key={scene.photo.src} photo={scene.photo} sizes="(max-width: 900px) 80vw, 420px" priority={i === 0} />)}
+              captions={hero.scenes.map((scene) => scene.caption)}
+              photos={hero.scenes.map((scene, i) => <Photo key={scene.photo.src} photo={scene.photo} sizes="(max-width: 900px) 80vw, 420px" priority={i === 0} />)}
             />
           </div>
         </div>

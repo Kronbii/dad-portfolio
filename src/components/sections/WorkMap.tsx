@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { benue, mapBox, niger, nigeria } from './nigeria'
-import styles from './variations.module.css'
+import styles from './home.module.css'
 
 /** x and y are in the map's own units (see nigeria.ts). A label goes to the right of its pin unless it would collide. */
 export type City = { name: string; work: string; x: number; y: number; labelAbove?: boolean }

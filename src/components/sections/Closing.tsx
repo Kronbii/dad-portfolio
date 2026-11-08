@@ -1,9 +1,9 @@
-import { aboutShort, contactCard, site } from '@/content/site'
+import { about, contactCard, site } from '@/content/site'
 import { cv } from '@/content/cv'
 import { WhatsAppButton, btnLine } from '../ContactActions'
 import { Inlay } from '../Inlay'
 import { Marked } from '../Marked'
-import styles from './variations.module.css'
+import styles from './home.module.css'
 
 /** About, cut to a greeting (English, Arabic, Yoruba), one line, and three facts. A snapshot from site overlaps the portrait. */
 export function AboutShort() {
@@ -11,22 +11,22 @@ export function AboutShort() {
     <section id="about" className="section-gap">
       <div className={`wrap ${styles.about}`}>
         <div className={styles.aboutPhotos}>
-          <Inlay photo={aboutShort.photo} ratio="3 / 4" sizes="(max-width: 900px) 80vw, 420px" />
+          <Inlay photo={about.photo} ratio="3 / 4" sizes="(max-width: 900px) 80vw, 420px" />
           <div className={styles.aboutSnapshot}>
-            <Inlay photo={aboutShort.snapshot} ratio="1 / 1" small paper reveal={false} sizes="(max-width: 900px) 40vw, 200px" />
+            <Inlay photo={about.snapshot} ratio="1 / 1" small paper reveal={false} sizes="(max-width: 900px) 40vw, 200px" />
           </div>
         </div>
         <div>
           <h2 className={styles.greeting}>
-            {aboutShort.greeting.map((word, i) => (
+            {about.greeting.map((word, i) => (
               <span key={word} style={{ '--i': i } as React.CSSProperties}>
                 {word}
               </span>
             ))}
           </h2>
-          <p className="t-lede mt-7 max-w-[44ch]">{aboutShort.lede}</p>
+          <p className="t-lede mt-7 max-w-[44ch]">{about.lede}</p>
           <ul className={styles.aboutFacts}>
-            {aboutShort.facts.map((fact) => (
+            {about.facts.map((fact) => (
               <li key={fact}>{fact}</li>
             ))}
           </ul>

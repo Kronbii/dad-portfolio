@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { site } from '@/content/site'
 import { cn } from '@/lib/utils'
@@ -13,12 +12,8 @@ const links = [
   { hash: '#contact', label: 'Contact' },
 ]
 
-// The design versions (/v1 to /v4) are each a whole home page, so their links stay on the page.
-const isVersion = (path: string) => /^\/v\d$/.test(path)
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
-  const base = isVersion(usePathname()) ? '' : '/'
   return (
     <header className="wrap no-print relative flex items-center justify-between gap-6 py-[22px]">
       <Link href="/" className="font-display text-[22px] no-underline">
@@ -44,7 +39,7 @@ export function SiteHeader() {
         {links.map((link) => (
           <Link
             key={link.hash}
-            href={base + link.hash}
+            href={`/${link.hash}`}
             onClick={() => setOpen(false)}
             className="border-b border-hair px-[18px] py-3.5 text-[15px] font-medium no-underline hover:text-rosso md:border-0 md:p-0"
           >

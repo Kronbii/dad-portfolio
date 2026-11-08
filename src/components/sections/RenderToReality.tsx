@@ -1,4 +1,3 @@
-import { renderToReality } from '@/content/site'
 import type { Photo } from '@/content/types'
 import { resolvePhoto } from '@/lib/photos'
 import { cn } from '@/lib/utils'
@@ -7,8 +6,8 @@ import { Marked } from '../Marked'
 
 type Content = { title: string; mark?: string; intro: string; before: Photo; after: Photo; labels?: readonly [string, string] }
 
-/** v1 shows the villa entrance. The design versions pass another pair, cropped, with a sweep that shows the slider moves. */
-export function RenderToReality({ content = renderToReality, ratio, position, peek, className }: { content?: Content; ratio?: string; position?: string; peek?: boolean; className?: string }) {
+/** A render and the finished work under one slider, optionally cropped, with a sweep that shows the slider moves. */
+export function RenderToReality({ content, ratio, position, peek, className }: { content: Content; ratio?: string; position?: string; peek?: boolean; className?: string }) {
   const [beforeLabel, afterLabel] = content.labels ?? ['Render', 'Finished']
   return (
     <section id="render" className="section-gap">
