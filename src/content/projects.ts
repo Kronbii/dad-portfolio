@@ -13,22 +13,22 @@ export const projects: Project[] = [
     summary:
       "A private residence on the Lagos lagoon, finished outside to the architect's design: balustrades I made on site, curving terraces, a pool with gazebos, stone paving and gardens down to the water.",
     story: [
-      'The work was the whole outside of a lagoon-front house: terraces that curve down towards the water, a pool with thatched gazebos, a stair to the jetty, stone paving, planting, and balustrades along every edge.',
+      'The work was the whole outside of a lagoon-front house: the entrance and the drive, terraces that curve down towards the water, a pool with thatched gazebos, a stair to the jetty, stone paving, planting, and balustrades along every edge.',
       'Importing that many balustrades, in curves that matched the terraces, would have been slow and expensive. I made them on site instead, from a profile drawn for the house, and cast the curved copings to fit each bend.',
       'I ran the crews from setting out to the last planted bed, and was on site through all of it.',
     ],
     facts: [
       { label: 'Location', value: verify('Lagos lagoon. Is it Banana Island?') },
       { label: 'Client', value: 'Private, name withheld' },
-      { label: 'Scope', value: 'Exterior finishing, balustrades, terraces, pool and landscape' },
+      { label: 'Scope', value: 'Exterior finishing: entrance, balustrades, terraces, pool and landscape' },
       { label: 'My role', value: 'Construction and project manager' },
       { label: 'Year', value: verify('Year completed') },
     ],
-    cover: lagoon('lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'),
+    cover: lagoon('drive-from-above', 'The drive, gardens and entrance gate of the residence, seen from above'),
     thumbs: [
+      lagoon('lagoon-pool', 'Pool, thatched gazebos and curved balustrades on a terrace above the Lagos lagoon'),
       lagoon('terrace-planter', 'Curved balustrade terrace with planting'),
       lagoon('terrace-curves', 'Balustrades curving down the terrace towards the pool'),
-      lagoon('stair-balustrade-side', 'Exterior stair with white balustrades'),
     ],
     steps: { title: madeOnSite.title, intro: madeOnSite.intro, items: madeOnSite.steps },
     onSite: [
@@ -37,6 +37,15 @@ export const projects: Project[] = [
       p('him/crew-pool-shell', 'Mahmoud Kronbi and the crew setting out the curved pool wall'),
     ],
     gallery: [
+      {
+        title: 'Entrance and gardens',
+        photos: [
+          lagoon('drive-from-above', 'The drive, gardens and entrance gate seen from above'),
+          lagoon('drive-gardens', 'Planted beds and stone paving along the drive'),
+          lagoon('gate-after', 'The entrance from the street: a tiled roof over the gate and the pedestrian door'),
+          lagoon('gate-built', 'The finished entrance gate, with vertical bars and patterned panels'),
+        ],
+      },
       {
         title: 'Terraces and pool',
         photos: [
